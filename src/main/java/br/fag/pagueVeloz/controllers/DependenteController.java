@@ -19,36 +19,36 @@ public class DependenteController {
     private DependenteService dependenteService;
 
     @PostMapping("/created")
-    public ResponseEntity<Object> cadastrarFuncionario(@RequestBody DependenteDTO dto){
+    public ResponseEntity<Object> cadastrarDependente(@RequestBody DependenteDTO dto){
         Dependente dependente = this.dependenteService.cadastrarDependente(dto);
         return new ResponseEntity<>(dependente, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> exibirFuncionario(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Object> exibirDependente(@PathVariable Long id) throws Exception {
         Dependente dependente = this.dependenteService.exibirDependente(id);
         return new ResponseEntity<>(dependente, HttpStatus.OK);
     }
 
     @GetMapping
-    public List<Dependente> exibirFuncionarios(){
+    public List<Dependente> exibirDependentes(){
         return this.dependenteService.exibirDependentes();
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<Object> editarFuncionario(@PathVariable Long id, DependenteDTO dto) throws Exception {
+    public ResponseEntity<Object> editarDependente(@PathVariable Long id, DependenteDTO dto) throws Exception {
         Dependente dependente = this.dependenteService.editarDependente(id, dto);
         return new ResponseEntity<>(dependente, HttpStatus.OK);
     }
 
     @PutMapping("/add/{id}")
-    public ResponseEntity<Object> editarFuncionario(@PathVariable Long id, AdicionarDependenteDTO dto) throws Exception {
+    public ResponseEntity<Object> editarDependente(@PathVariable Long id, AdicionarDependenteDTO dto) throws Exception {
         Funcionario funcionario = this.dependenteService.adicionarDependente(dto);
         return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }
 
     @PutMapping("/disable/{id}")
-    public ResponseEntity<Object> desativarFuncionario(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Object> desativarDependente(@PathVariable Long id) throws Exception {
         this.dependenteService.desativarDependente(id);
         return new ResponseEntity("Foi desativo com sucesso!", HttpStatus.OK);
     }
