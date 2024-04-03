@@ -18,9 +18,11 @@ public class InformacaoPagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Double jornadaDeTrabalho;
     private Double salarioBruto;
     private Double horasTrabalhadas;
+    private Double percentualHoraExtra;  //adicionado
     private Double valorValeTransporte;
     private Double valorValeAlimentacao;
 }
