@@ -30,7 +30,7 @@ public class InformacaoPagamentoService {
 
         //ver pra criar horas noturnas/feriado/domingos
         Double totalHoraExtra = horasTrabalhadas - jornadaDeTrabalho;
-        Double valorHoraExtra = salarioHora * (1.0 + funcionario.getInformacaoPagamento().getPercentualAdicional() / 100.0);
+        Double valorHoraExtra = salarioHora * (1.0 + funcionario.getInformacaoPagamento().getPercentualHoraExtra() / 100.0);
 
         Double result = totalHoraExtra * valorHoraExtra;
 
