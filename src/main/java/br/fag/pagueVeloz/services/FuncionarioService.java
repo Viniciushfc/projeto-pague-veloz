@@ -1,9 +1,8 @@
 package br.fag.pagueVeloz.services;
 
 import br.fag.pagueVeloz.dtos.FuncionarioDTO;
-import br.fag.pagueVeloz.entities.funcionario.Funcionario;
+import br.fag.pagueVeloz.entities.Funcionario;
 import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.DependenteRepository;
 import br.fag.pagueVeloz.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,11 +35,13 @@ public class FuncionarioService {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException()));
 
-        return optionalFuncionario.get();
+        Funcionario funcionario = optionalFuncionario.get();
+
+        return funcionario;
     }
 
     //Função para listar todos os Funcionarios.
-    public List<Funcionario> exibirFuncionarios(){
+    public List<Funcionario> exibirFuncionarios() {
         return this.funcionarioRepository.findAll();
     }
 
@@ -58,7 +59,7 @@ public class FuncionarioService {
         funcionario.setDataAniversario(dto.dataAniversario());
         funcionario.setEndereco(dto.endereco());
         funcionario.setTypeCategoriaSegurados(dto.typeCategoriaSegurados());
-        funcionario.setInformacaoPagamento(dto.informacaoPagamento());
+        funcionario.setInformacaoMensal(dto.informacaoPagamento());
 
         salvarFuncionario(funcionario);
 
@@ -66,7 +67,7 @@ public class FuncionarioService {
     }
 
     //Função para Desativar um Funcionario.
-    public void desativarFuncionario(Long id) throws Exception{
+    public void desativarFuncionario(Long id) throws Exception {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException()));
 

@@ -1,6 +1,6 @@
 package br.fag.pagueVeloz.repositories;
 
-import br.fag.pagueVeloz.entities.funcionario.Funcionario;
+import br.fag.pagueVeloz.entities.Funcionario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

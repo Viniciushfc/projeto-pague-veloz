@@ -1,10 +1,13 @@
-package br.fag.pagueVeloz.entities.dependente;
+package br.fag.pagueVeloz.entities;
 
 import br.fag.pagueVeloz.dtos.DependenteDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -17,15 +20,17 @@ public class Dependente {
     private Long id;
     private String cpfResponsavel;
     private String nomeDependente;
+    private String grauDeParentesco;
     @Column(unique = true)
     private String cpf;
 
-    private int idade;
+    private LocalDateTime dataNascimento;
 
     public Dependente(DependenteDTO dto) {
         this.cpfResponsavel = dto.cpfResponsavel();
         this.nomeDependente = dto.nomeDependente();
         this.cpf = dto.cpf();
-        this.idade = dto.idade();
+        this.grauDeParentesco = dto.grauDeParentesco();
+        this.dataNascimento = dto.dataNascimento();
     }
 }

@@ -1,4 +1,4 @@
-package br.fag.pagueVeloz.entities.categoriaSegurados;
+package br.fag.pagueVeloz.entities;
 
 public enum TypeCategoriaSegurados {
     SEGURADO_EMPREGADO,

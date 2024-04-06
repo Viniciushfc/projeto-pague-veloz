@@ -1,9 +1,12 @@
 package br.fag.pagueVeloz.dtos;
 
+import java.time.LocalDateTime;
+
 public record DependenteDTO(
         String cpfResponsavel,
         String nomeDependente,
         String cpf,
-        int idade
+        String grauDeParentesco,
+        LocalDateTime dataNascimento
         ) {
 }

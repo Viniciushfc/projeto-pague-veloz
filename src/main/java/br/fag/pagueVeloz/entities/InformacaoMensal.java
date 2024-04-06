@@ -1,4 +1,4 @@
-package br.fag.pagueVeloz.entities.informacaoPagamento;
+package br.fag.pagueVeloz.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,22 +7,24 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "inforacao_pagamento")
-public class InformacaoPagamento {
+@Entity(name = "inforacao_mensal")
+public class InformacaoMensal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Double jornadaDeTrabalho;
     private Double salarioBruto;
-    private Double horasTrabalhadas;
-    private Double percentualHoraExtra;  //adicionado
-    private Double valorValeTransporte;
-    private Double valorValeAlimentacao;
+    private Double jornadaDeTrabalho = 192.0;
+    private Double horaExtra;
+    private Double adicionalNoturno;
+    private Double faltasAtrasos;
+    private Double adiantamento;
+    private Boolean sindical;
+    private int grauInsalubridade;
+
 }

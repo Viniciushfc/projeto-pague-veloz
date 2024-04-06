@@ -1,9 +1,6 @@
 package br.fag.pagueVeloz.dtos;
 
-import br.fag.pagueVeloz.entities.categoriaSegurados.TypeCategoriaSegurados;
-import br.fag.pagueVeloz.entities.endereco.Endereco;
-import br.fag.pagueVeloz.entities.informacaoPagamento.InformacaoPagamento;
-import br.fag.pagueVeloz.entities.sexo.TypeSexo;
+import br.fag.pagueVeloz.entities.*;
 
 import java.time.LocalTime;
 
@@ -11,10 +8,13 @@ public record FuncionarioDTO(
         String nome,
         String rg,
         String cpf,
+        TypeCargo typeCargo,
+        String funcao,
         TypeSexo typeSexo,
         LocalTime dataAniversario,
         Endereco endereco,
         TypeCategoriaSegurados typeCategoriaSegurados,
-        InformacaoPagamento informacaoPagamento
+        InformacaoMensal informacaoMensal
         ) {
+
 }

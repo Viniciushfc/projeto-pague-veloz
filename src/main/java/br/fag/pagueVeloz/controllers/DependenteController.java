@@ -2,8 +2,8 @@ package br.fag.pagueVeloz.controllers;
 
 import br.fag.pagueVeloz.dtos.AdicionarDependenteDTO;
 import br.fag.pagueVeloz.dtos.DependenteDTO;
-import br.fag.pagueVeloz.entities.dependente.Dependente;
-import br.fag.pagueVeloz.entities.funcionario.Funcionario;
+import br.fag.pagueVeloz.entities.Dependente;
+import br.fag.pagueVeloz.entities.Funcionario;
 import br.fag.pagueVeloz.services.DependenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
