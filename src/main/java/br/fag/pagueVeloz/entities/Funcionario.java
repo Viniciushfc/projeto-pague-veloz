@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -33,8 +34,8 @@ public class Funcionario {
     private LocalTime dataAniversario;
 
     @Nullable
-    @ManyToOne
-    private Dependente dependentes;
+    @OneToMany
+    private List<Dependente> dependentes;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
