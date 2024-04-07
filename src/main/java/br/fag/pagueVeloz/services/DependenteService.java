@@ -57,7 +57,7 @@ public class DependenteService {
         dependente.setCpfResponsavel(dto.cpfResponsavel());
         dependente.setNomeDependente(dto.nomeDependente());
         dependente.setCpf(dto.cpf());
-        dependente.setIdade(dto.idade());
+        dependente.setDataNascimento(dto.dataNascimento());
 
         salvarDependente(dependente);
 

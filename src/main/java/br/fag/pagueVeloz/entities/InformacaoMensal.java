@@ -20,11 +20,11 @@ public class InformacaoMensal {
 
     private Double salarioBruto;
     private Double jornadaDeTrabalho = 192.0;
-    private Double horaExtra;
+    private Double horasExtras;
     private Double adicionalNoturno;
     private Double faltasAtrasos;
     private Double adiantamento;
     private Boolean sindical;
-    private int grauInsalubridade;
+    private TypeInsalubridade grauInsalubridade;
 
 }

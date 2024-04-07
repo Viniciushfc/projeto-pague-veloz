@@ -29,6 +29,7 @@ public class Funcionario {
 
     private TypeCargo typeCargo;
     private String funcao;
+    private TypePeriodo typePeriodo;
     private TypeSexo typeSexo;
     private LocalTime dataAniversario;
 
