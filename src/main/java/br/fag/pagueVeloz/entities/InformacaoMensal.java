@@ -26,5 +26,7 @@ public class InformacaoMensal {
     private Double adiantamento;
     private Boolean sindical;
     private TypeInsalubridade grauInsalubridade;
+    private Double valeAlimentacao = 220.00;
+    private Double valeTransporte = 300.00;
 
 }
