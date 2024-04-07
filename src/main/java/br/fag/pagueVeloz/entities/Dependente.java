@@ -18,6 +18,8 @@ public class Dependente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private Boolean ativo;
     private String cpfResponsavel;
     private String nomeDependente;
     private String grauDeParentesco;
@@ -33,4 +35,6 @@ public class Dependente {
         this.grauDeParentesco = dto.grauDeParentesco();
         this.dataNascimento = dto.dataNascimento();
     }
+
+
 }
