@@ -57,7 +57,7 @@ public class DependenteService {
         dependente.setCpfResponsavel(dto.cpfResponsavel());
         dependente.setNomeDependente(dto.nomeDependente());
         dependente.setCpf(dto.cpf());
-        dependente.setIdade(dto.idade());
+        dependente.setDataNascimento(dto.dataNascimento());
 
         salvarDependente(dependente);
 
@@ -70,8 +70,9 @@ public class DependenteService {
         Optional<Dependente> optionalDependente = Optional.ofNullable(dependenteRepository.findByCpf(dto.cpfDependente()).orElseThrow(() -> new NotFoundException()));
 
         Funcionario funcionario = optionalFuncionario.get();
+        Dependente dependente = optionalDependente.get();
 
-        funcionario.setDependentes(optionalDependente.get());
+        funcionario.getDependentes().add(dependente);
 
         this.funcionarioRepository.save(funcionario);
 
