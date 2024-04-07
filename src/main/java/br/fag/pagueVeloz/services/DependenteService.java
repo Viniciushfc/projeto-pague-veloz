@@ -70,8 +70,9 @@ public class DependenteService {
         Optional<Dependente> optionalDependente = Optional.ofNullable(dependenteRepository.findByCpf(dto.cpfDependente()).orElseThrow(() -> new NotFoundException()));
 
         Funcionario funcionario = optionalFuncionario.get();
+        Dependente dependente = optionalDependente.get();
 
-        funcionario.setDependentes(optionalDependente.get());
+        funcionario.getDependentes().add(dependente);
 
         this.funcionarioRepository.save(funcionario);
 
