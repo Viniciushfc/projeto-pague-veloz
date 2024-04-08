@@ -30,6 +30,7 @@ public class DependenteService {
     //Função para Cadastrar um Dependente.
     public Dependente cadastrarDependente(DependenteDTO dto) {
         Dependente newDependente = new Dependente(dto);
+        newDependente.setAtivo(true);
         salvarDependente(newDependente);
         return newDependente;
     }
@@ -86,6 +87,6 @@ public class DependenteService {
 
         Dependente dependente = optionalDependente.get();
 
-//        dependente.setAtivo(false);
+        dependente.setAtivo(false);
     }
 }
