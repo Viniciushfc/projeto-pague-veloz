@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class DescontosService {
 
-    //INSS ok , IRRF, SINCICAL valeA 6% valeT10%
+    //INSS ok , IRRF ok , SINCICAL ok, valeA 6% ok valeT10%
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
@@ -69,4 +69,48 @@ public class DescontosService {
         }
     }
 
+    public Double calcularSindical(Long id) throws NotFoundException {
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
+
+        Funcionario funcionario = optionalFuncionario.get();
+        if (funcionario.getInformacaoMensal().getSindical() == true) {
+            Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
+
+            return salarioBruto * 0.5 / 100;
+        }
+
+        return 0.0;
+    }
+
+    public Double calcularValeAlimentacao(Long id) throws NotFoundException {
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
+
+        Funcionario funcionario = optionalFuncionario.get();
+        Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
+        Double valeAlimentacao = funcionario.getInformacaoMensal().getValeAlimentacao();
+
+        if (valeAlimentacao <= salarioBruto * 0.06) {
+            return valeAlimentacao;
+        } else {
+            return salarioBruto * 0.06;
+        }
+    }
+
+    public Double calcularValeTransporte(Long id) throws NotFoundException {
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
+
+        Funcionario funcionario = optionalFuncionario.get();
+        Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
+
+        if (salarioBruto * 0.1 <= 300.00) {
+            return salarioBruto * 0.1;
+        } else {
+            return 300.00;
+        }
+    }
+
 }
+
