@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +25,7 @@ public class Dependente {
     @Column(unique = true)
     private String cpf;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     public Dependente(DependenteDTO dto) {
         this.cpfResponsavel = dto.cpfResponsavel();

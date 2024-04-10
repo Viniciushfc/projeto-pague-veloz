@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class Funcionario {
     private TypePeriodo typePeriodo;
     private TypeSexo typeSexo;
     private LocalTime dataAniversario;
+    private LocalDate registrado = LocalDate.now();
 
     @Nullable
     @OneToMany
