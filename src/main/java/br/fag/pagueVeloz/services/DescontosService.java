@@ -43,7 +43,7 @@ public class DescontosService {
     }
 
     //precisa fazer o calculo do INSS e PENSAOALIMENTICIA antes para agregar no IRRF.
-    public Double calcularIrrf(Long id, Double inss, Double pensaoAlimenticia) throws NotFoundException {
+    public Double calcularIrrf(Long id, Double inss) throws NotFoundException {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException()));
 
@@ -52,20 +52,20 @@ public class DescontosService {
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         int numeroDependentes = funcionario.getDependentes().size();
 
-        Double baseCalculo = salarioBruto - inss - (numeroDependentes * 189.59) - pensaoAlimenticia;
+        double calculo = salarioBruto - inss - (numeroDependentes * 189.59);
 
         Double imposto;
 
-        if (baseCalculo <= 1903.98) {
+        if (calculo <= 1903.98) {
             return imposto = 0.0;
-        } else if (baseCalculo <= 2826.65) {
-            return imposto = (baseCalculo - 1903.98) * 0.075;
-        } else if (baseCalculo <= 3751.05) {
-            return imposto = (baseCalculo - 2826.65) * 0.15;
-        } else if (baseCalculo <= 4664.68) {
-            return imposto = (baseCalculo - 3751.05) * 0.225;
+        } else if (calculo <= 2826.65) {
+            return imposto = (calculo - 1903.98) * 0.075;
+        } else if (calculo <= 3751.05) {
+            return imposto = (calculo - 2826.65) * 0.15;
+        } else if (calculo <= 4664.68) {
+            return imposto = (calculo - 3751.05) * 0.225;
         } else {
-            return imposto = (baseCalculo - 4664.68) * 0.275;
+            return imposto = (calculo - 4664.68) * 0.275;
         }
     }
 
