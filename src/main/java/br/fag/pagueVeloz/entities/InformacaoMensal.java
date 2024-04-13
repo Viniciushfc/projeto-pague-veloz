@@ -27,6 +27,7 @@ public class InformacaoMensal {
     private Boolean sindical;
     private Boolean viagem;
     private TypeInsalubridade grauInsalubridade;
+    private Boolean periculosidade;
     private Double valeAlimentacao = 220.00;
     private Double valeTransporte = 300.00;
 
