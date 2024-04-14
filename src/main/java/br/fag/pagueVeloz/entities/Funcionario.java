@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,7 +34,8 @@ public class Funcionario {
     private String funcao;
     private TypePeriodo typePeriodo;
     private TypeSexo typeSexo;
-    private LocalTime dataAniversario;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dataAniversario;
     private LocalDate registrado = LocalDate.now();
 
     @Nullable
