@@ -42,6 +42,19 @@ public class DescontosService {
         }
     }
 
+    public Double calcularFgts(Long id) throws NotFoundException {
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
+
+        Funcionario funcionario = optionalFuncionario.get();
+
+        Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
+
+        double depositoMensal = salarioBruto * 0.08;
+
+        return depositoMensal;
+    }
+
     //precisa fazer o calculo do INSS e PENSAOALIMENTICIA antes para agregar no IRRF.
     public Double calcularIrrf(Long id, Double inss) throws NotFoundException {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
