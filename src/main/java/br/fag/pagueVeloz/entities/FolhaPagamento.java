@@ -25,7 +25,11 @@ public class FolhaPagamento {
     private final String nomeFantasiaEmpresa = "PagueVeloz";
     private final String setorEmpresa = "Gestão";
     private Long idFuncionario;
-    private Double inss ;
+    private String funcaoFuncionario;
+    private TypeCargo cargoFuncionario;
+    private TypeCategoriaSegurados categoriaFuncionario;
+    private Double inss;
+    private Double fgts;
     private Double irrf;
     private Double sindical;
     private Double valeAlimentacao;
@@ -39,6 +43,6 @@ public class FolhaPagamento {
     private Double diariasViagens;
     private Double adicional;
     private Double auxilioCreche;
-
+    private Double salarioLiquido;
 
 }
