@@ -8,6 +8,9 @@ import br.fag.pagueVeloz.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 @Service
 public class FolhaPagamentoService {
 
@@ -24,26 +27,59 @@ public class FolhaPagamentoService {
     private DescontosService descontosService;
 
     public FolhaPagamento gerarFolhaPagamento(Long id) throws NotFoundException {
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
 
-        FolhaPagamento folhaPagamento = new FolhaPagamento();
         //Descontos
         Double inss = descontosService.calcularInss(id);
-        folhaPagamento.setInss(inss);
-        folhaPagamento.setIrrf(descontosService.calcularIrrf(id,inss));
-        folhaPagamento.setSindical(descontosService.calcularSindical(id));
-        folhaPagamento.setValeAlimentacao(descontosService.calcularValeAlimentacao(id));
-        folhaPagamento.setValeTransport(descontosService.calcularValeTransporte(id));
+        Double fgts = descontosService.calcularFgts(id);
+        Double irrf = descontosService.calcularIrrf(id, inss);
+        Double sindical = descontosService.calcularSindical(id);
+        Double valeAlimentacao = descontosService.calcularValeAlimentacao(id);
+        Double valeTransport = descontosService.calcularValeTransporte(id);
 
-        //Beneficios
-        folhaPagamento.setHoraExtra(beneficioService.horaExtra(id));
-        folhaPagamento.setDsr(beneficioService.calcularDSR(id));
-        folhaPagamento.setNoturno(beneficioService.calcularNoturno(id));
-        folhaPagamento.setInsalubridade(beneficioService.calcularInsalubridade(id));
-        folhaPagamento.setPericulosidade(beneficioService.calcularPericulosidade(id));
-        folhaPagamento.setSalarioFamilia(beneficioService.calcularSalarioFamilia(id));
-        folhaPagamento.setDiariasViagens(beneficioService.calcularAdicional(id));
-        folhaPagamento.setAdicional(beneficioService.calcularDiariasViagens(id));
-        folhaPagamento.setAuxilioCreche(beneficioService.calcularAuxilioCreche(id));
+        Double descontosTotal = inss + fgts + irrf + sindical + valeAlimentacao + valeTransport;
+
+        //Benefícios
+        Double horaExtra = beneficioService.horaExtra(id);
+        Double dsr = beneficioService.calcularDSR(id);
+        Double noturno = beneficioService.calcularNoturno(id);
+        Double insalubridade = beneficioService.calcularInsalubridade(id);
+        Double periculosidade = beneficioService.calcularPericulosidade(id);
+        Double salarioFamilia = beneficioService.calcularSalarioFamilia(id);
+        Double diariasViagens = beneficioService.calcularDiariasViagens(id);
+        Double adicional = beneficioService.calcularAdicional(id);
+        Double auxilioCreche = beneficioService.calcularAuxilioCreche(id);
+
+        Double beneficiosTotal = horaExtra + dsr + noturno + insalubridade + periculosidade +
+                salarioFamilia + diariasViagens + adicional + auxilioCreche;
+
+
+        Double salarioBruto = optionalFuncionario.get().getInformacaoMensal().getSalarioBruto();
+
+        Double salarioLiquido =  salarioBruto - descontosTotal + beneficiosTotal;
+
+        FolhaPagamento folhaPagamento = new FolhaPagamento();
+        folhaPagamento.setIdFuncionario(optionalFuncionario.get().getId());
+        folhaPagamento.setFuncaoFuncionario(optionalFuncionario.get().getFuncao());
+        folhaPagamento.setCargoFuncionario(optionalFuncionario.get().getTypeCargo());
+        folhaPagamento.setCategoriaFuncionario(optionalFuncionario.get().getTypeCategoriaSegurados());
+        folhaPagamento.setInss(inss);
+        folhaPagamento.setFgts(fgts);
+        folhaPagamento.setIrrf(irrf);
+        folhaPagamento.setSindical(sindical);
+        folhaPagamento.setValeAlimentacao(valeAlimentacao);
+        folhaPagamento.setValeTransport(valeTransport);
+        folhaPagamento.setHoraExtra(horaExtra);
+        folhaPagamento.setDsr(dsr);
+        folhaPagamento.setNoturno(noturno);
+        folhaPagamento.setInsalubridade(insalubridade);
+        folhaPagamento.setPericulosidade(periculosidade);
+        folhaPagamento.setSalarioFamilia(salarioFamilia);
+        folhaPagamento.setDiariasViagens(diariasViagens);
+        folhaPagamento.setAdicional(adicional);
+        folhaPagamento.setAuxilioCreche(auxilioCreche);
+        folhaPagamento.setSalarioLiquido(salarioLiquido);
 
         folhaPagamentoRepository.save(folhaPagamento);
 
