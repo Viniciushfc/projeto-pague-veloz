@@ -79,15 +79,17 @@ public class BeneficioService {
 
         Double salarioMinimo = 1300.0;
 
-        if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU1){
-            Double valorInsalubridade = salarioMinimo * 0.1;
-            return valorInsalubridade;
-        }else if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU2){
-            Double valorInsalubridade = salarioMinimo * 0.2;
-            return valorInsalubridade;
-        } else if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU3) {
-            Double valorInsalubridade = salarioMinimo * 0.4;
-            return valorInsalubridade;
+        if (!funcionario.getInformacaoMensal().getPericulosidade()) {
+            if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU1) {
+                Double valorInsalubridade = salarioMinimo * 0.1;
+                return valorInsalubridade;
+            } else if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU2) {
+                Double valorInsalubridade = salarioMinimo * 0.2;
+                return valorInsalubridade;
+            } else if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU3) {
+                Double valorInsalubridade = salarioMinimo * 0.4;
+                return valorInsalubridade;
+            }
         }
 
         return 0.0;
@@ -101,7 +103,7 @@ public class BeneficioService {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
-        if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU0){
+        if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU0 && funcionario.getInformacaoMensal().getPericulosidade()){
             Double valorPericulosidade = salarioBruto * 1.3;
             return valorPericulosidade;
         }
