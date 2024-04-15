@@ -2,8 +2,8 @@ package br.fag.pagueVeloz.services;
 
 import br.fag.pagueVeloz.dtos.AdicionarDependenteDTO;
 import br.fag.pagueVeloz.dtos.DependenteDTO;
-import br.fag.pagueVeloz.entities.Dependente;
-import br.fag.pagueVeloz.entities.Funcionario;
+import br.fag.pagueVeloz.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.entities.*;
 import br.fag.pagueVeloz.exceptions.NotFoundException;
 import br.fag.pagueVeloz.repositories.DependenteRepository;
 import br.fag.pagueVeloz.repositories.FuncionarioRepository;
@@ -12,10 +12,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -108,8 +110,48 @@ public class DependenteServiceTest {
     }
 
     @Test
-    public void testAdicionarDependente() {
-        //finalizar
+    public void testAdicionarDependente() throws NotFoundException {
+        AdicionarDependenteDTO dto = new AdicionarDependenteDTO("12345678901", "12345678900");
+
+        Endereco endereco = new Endereco();
+        InformacaoMensal informacaoMensal = new InformacaoMensal();
+        LocalDate dataAniversario = LocalDate.parse("2010-01-01");
+        FuncionarioDTO funcionarioDTO = new FuncionarioDTO("NOME",
+                "rg",
+                "12345678901",
+                TypeCargo.ANALISTA,
+                "funcao",
+                TypeSexo.FEMININO,
+                dataAniversario, endereco,
+                TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL,
+                informacaoMensal);
+
+        DependenteDTO dependenteDTO = new DependenteDTO(
+                "cpfResponsavel",
+                "nomeDependente",
+                "12345678900",
+                "grauDeParentesco",
+                LocalDate.of(2000, 1, 1));
+
+        Funcionario funcionario = new Funcionario(funcionarioDTO);
+        Dependente dependente = new Dependente(dependenteDTO);
+
+        // Configurações do Mock dos repositórios
+        funcionario.setDependentes(new ArrayList<>());
+
+        // Configurações do Mock dos repositórios
+        when(funcionarioRepository.findByCpf(dto.cpfResponsavel())).thenReturn(Optional.of(funcionario));
+        when(dependenteRepository.findByCpf(dto.cpfDependente())).thenReturn(Optional.of(dependente));
+        when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
+
+        // Chamada do método
+        Funcionario result = dependenteService.adicionarDependente(dto);
+
+        // Verificações
+        assertEquals(funcionario, result);
+        verify(funcionarioRepository, times(1)).findByCpf(dto.cpfResponsavel());
+        verify(dependenteRepository, times(1)).findByCpf(dto.cpfDependente());
+        verify(funcionarioRepository, times(1)).save(funcionario);
     }
 
     @Test
