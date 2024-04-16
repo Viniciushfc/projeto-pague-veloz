@@ -11,6 +11,7 @@ import br.fag.pagueVeloz.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,9 +75,12 @@ public class DependenteService {
         Funcionario funcionario = optionalFuncionario.get();
         Dependente dependente = optionalDependente.get();
 
-        funcionario.getDependentes().add(dependente);
+        if (funcionario.getDependentes() == null) {
+            funcionario.setDependentes(new ArrayList<>());
+        }
 
-        this.funcionarioRepository.save(funcionario);
+        funcionario.getDependentes().add(dependente);
+        funcionarioRepository.save(funcionario);
 
         return funcionario;
     }
