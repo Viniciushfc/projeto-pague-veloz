@@ -4,6 +4,7 @@ import br.fag.pagueVeloz.dtos.AdicionarDependenteDTO;
 import br.fag.pagueVeloz.dtos.DependenteDTO;
 import br.fag.pagueVeloz.dtos.FuncionarioDTO;
 import br.fag.pagueVeloz.entities.*;
+import br.fag.pagueVeloz.exceptions.CustomException;
 import br.fag.pagueVeloz.exceptions.NotFoundException;
 import br.fag.pagueVeloz.repositories.DependenteRepository;
 import br.fag.pagueVeloz.repositories.FuncionarioRepository;
@@ -110,47 +111,28 @@ public class DependenteServiceTest {
     }
 
     @Test
-    public void testAdicionarDependente() throws NotFoundException {
-        AdicionarDependenteDTO dto = new AdicionarDependenteDTO("12345678901", "12345678900");
+    public void testAdicionarDependente() throws NotFoundException, CustomException {
+        AdicionarDependenteDTO dto = new AdicionarDependenteDTO("12345678901");
+        long idDependente = 1L;
 
-        Endereco endereco = new Endereco();
-        InformacaoMensal informacaoMensal = new InformacaoMensal();
-        LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO funcionarioDTO = new FuncionarioDTO("NOME",
-                "rg",
-                "12345678901",
-                TypeCargo.ANALISTA,
-                "funcao",
-                TypeSexo.FEMININO,
-                dataAniversario, endereco,
-                TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL,
-                informacaoMensal);
+        Funcionario funcionario = new Funcionario();
+        funcionario.setCpf("12345678901");
 
-        DependenteDTO dependenteDTO = new DependenteDTO(
-                "cpfResponsavel",
-                "nomeDependente",
-                "12345678900",
-                "grauDeParentesco",
-                LocalDate.of(2000, 1, 1));
+        Dependente dependente = new Dependente();
+        dependente.setId(idDependente);
 
-        Funcionario funcionario = new Funcionario(funcionarioDTO);
-        Dependente dependente = new Dependente(dependenteDTO);
 
-        // Configurações do Mock dos repositórios
-        funcionario.setDependentes(new ArrayList<>());
-
-        // Configurações do Mock dos repositórios
         when(funcionarioRepository.findByCpf(dto.cpfResponsavel())).thenReturn(Optional.of(funcionario));
-        when(dependenteRepository.findByCpf(dto.cpfDependente())).thenReturn(Optional.of(dependente));
+        when(dependenteRepository.findById(idDependente)).thenReturn(Optional.of(dependente));
         when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
 
-        // Chamada do método
-        Funcionario result = dependenteService.adicionarDependente(dto);
+        Funcionario result = dependenteService.adicionarDependente(idDependente, dto);
 
-        // Verificações
         assertEquals(funcionario, result);
+        assertEquals(1, funcionario.getDependentes().size());
+        assertEquals(dependente, funcionario.getDependentes().get(0));
         verify(funcionarioRepository, times(1)).findByCpf(dto.cpfResponsavel());
-        verify(dependenteRepository, times(1)).findByCpf(dto.cpfDependente());
+        verify(dependenteRepository, times(1)).findById(idDependente);
         verify(funcionarioRepository, times(1)).save(funcionario);
     }
 
