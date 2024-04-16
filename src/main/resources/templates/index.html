@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Folha de Pagamento - PagueVeloz</title>
-    <link rel="stylesheet" href="../static/css/style.css">
     <style>
         *{
     padding: 0px;
@@ -221,13 +220,13 @@ input[type="submit"]:hover {
         <form action="index.html" method="POST" id="formCreateFuncionario">
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome"><br>
-            
+
             <label for="rg">RG:</label><br>
             <input type="text" id="rg" name="rg"><br>
-            
+
             <label for="cpfFuncionario">CPF:</label><br>
             <input type="text" id="cpfFuncionario" name="cpf"><br>
-            
+
             <label for="cargo">Cargo:</label><br>
             <select id="cargo" name="cargo">
                 <option value="CEO">CEO</option>
@@ -243,10 +242,10 @@ input[type="submit"]:hover {
                 <option value="CONSULTOR">Consultor</option>
                 <option value="ESTAGIARIO">Estagiário</option>
             </select><br>
-            
+
             <label for="funcao">Função:</label><br>
             <input type="text" id="funcao" name="funcao"><br>
-            
+
             <label>Sexo:</label><br>
             <div class="radio-container">
                 <input type="radio" id="masculino" name="sexo" value="MASCULINO">
@@ -256,7 +255,7 @@ input[type="submit"]:hover {
                 <input type="radio" id="feminino" name="sexo" value="FEMININO">
                 <label for="feminino">Feminino</label><br>
             </div>
-            
+
             <label for="dataAniversarioF" id="dataF">Data de Aniversário:</label><br>
             <input type="date" id="dataAniversarioF" name="dataAniversario"><br>
 
@@ -302,28 +301,24 @@ input[type="submit"]:hover {
         <form action="index.html" method="POST">
             <label for="cpfResponsavel">CPF do Responsável:</label><br>
             <input type="text" id="cpfResponsavel" name="cpfResponsavel"><br>
-            
+
             <label for="nomeDependente">Nome do Dependente:</label><br>
             <input type="text" id="nomeDependente" name="nomeDependente"><br>
-            
+
             <label for="cpfDependente">CPF do Dependente:</label><br>
             <input type="text" id="cpfDependente" name="cpf"><br>
-            
+
             <label for="grauDeParentesco">Grau de Parentesco:</label><br>
             <input type="text" id="grauDeParentesco" name="grauDeParentesco"><br>
-            
+
             <label for="dataAniversarioD" id="dataD">Data de Aniversário:</label><br>
             <input type="date" id="dataAniversarioD" name="dataAniversario"><br>
-            
+
             <div id="criarD">
                 <input type="submit" value="Criar" id="buttonCriarD">
             </div>
         </form>
     </div>
-
-
-
-    <script src="../static/javaScript/script.js"></script>
 
     <script>
         var createFuncio = document.getElementById("criarFuncionarioId");
