@@ -17,9 +17,7 @@ public class DescontosService {
     @Autowired
     private DependenteRepository dependenteRepository;
 
-    public Double calcularInss(Funcionario funcionarioFind) throws NotFoundException {
-
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularInss(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -34,9 +32,7 @@ public class DescontosService {
         }
     }
 
-    public Double calcularFgts(Funcionario funcionarioFind) throws NotFoundException {
-
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularFgts(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -45,10 +41,8 @@ public class DescontosService {
         return depositoMensal;
     }
 
-    public Double calcularIrrf(Funcionario funcionarioFind, Double inss) throws NotFoundException {
-
-        Funcionario funcionario = funcionarioFind;
-
+    public Double calcularIrrf(Funcionario funcionario, Double inss) throws NotFoundException {
+        
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         int numeroDependentes = funcionario.getDependentes().size();
 
@@ -73,9 +67,7 @@ public class DescontosService {
         }
     }
 
-    public Double calcularSindical(Funcionario funcionarioFind) throws NotFoundException {
-
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularSindical(Funcionario funcionario) throws NotFoundException {
 
         if (funcionario.getInformacaoMensal().getSindical() == true) {
             Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
@@ -86,8 +78,7 @@ public class DescontosService {
         return 0.0;
     }
 
-    public Double calcularValeAlimentacao(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularValeAlimentacao(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double valeAlimentacao = funcionario.getInformacaoMensal().getValeAlimentacao();
@@ -99,8 +90,7 @@ public class DescontosService {
         }
     }
 
-    public Double calcularValeTransporte(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularValeTransporte(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 

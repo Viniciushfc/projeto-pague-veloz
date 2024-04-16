@@ -37,9 +37,7 @@ public class BeneficioService {
         return totHorasExtras;
     }
 
-    public Double calcularDSR(Funcionario funcionarioFind) throws NotFoundException {
-
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularDSR(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double jornadaTrabalho = funcionario.getInformacaoMensal().getJornadaDeTrabalho();
@@ -49,8 +47,7 @@ public class BeneficioService {
         return valorDSR;
     }
 
-    public Double calcularNoturno(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularNoturno(Funcionario funcionario) throws NotFoundException {
 
         if (funcionario.getTypePeriodo() == TypePeriodo.NOTURNO) {
             Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
@@ -64,8 +61,7 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularInsalubridade(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularInsalubridade(Funcionario funcionario) throws NotFoundException {
 
         Double salarioMinimo = 1300.0;
 
@@ -85,8 +81,7 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularPericulosidade(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularPericulosidade(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -98,8 +93,7 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularSalarioFamilia(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularSalarioFamilia(Funcionario funcionario) throws NotFoundException {
 
         Double unitFilho = (1300.0 / 100) * 5;
 
@@ -111,8 +105,7 @@ public class BeneficioService {
 
     }
 
-    public Double calcularDiariasViagens(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularDiariasViagens(Funcionario funcionario) throws NotFoundException {
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         if (funcionario.getInformacaoMensal().getViagem()) {
@@ -123,9 +116,7 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularAdicional(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
-
+    public Double calcularAdicional(Funcionario funcionario) throws NotFoundException {
         LocalDate hoje = LocalDate.now();
         LocalDate diasRegistrado = funcionario.getRegistrado();
 
@@ -138,8 +129,7 @@ public class BeneficioService {
 
     }
 
-    public Double calcularAuxilioCreche(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
+    public Double calcularAuxilioCreche(Funcionario funcionario) throws NotFoundException {
 
         Double unitFilho = 400.0;
 
