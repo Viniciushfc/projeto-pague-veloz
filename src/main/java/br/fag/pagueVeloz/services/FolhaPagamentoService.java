@@ -30,26 +30,27 @@ public class FolhaPagamentoService {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException()));
 
+        Funcionario funcionarioFind = optionalFuncionario.get();
         //Descontos
-        Double inss = descontosService.calcularInss(id);
-        Double fgts = descontosService.calcularFgts(id);
-        Double irrf = descontosService.calcularIrrf(id, inss);
-        Double sindical = descontosService.calcularSindical(id);
-        Double valeAlimentacao = descontosService.calcularValeAlimentacao(id);
-        Double valeTransport = descontosService.calcularValeTransporte(id);
+        Double inss = descontosService.calcularInss(funcionarioFind);
+        Double fgts = descontosService.calcularFgts(funcionarioFind);
+        Double irrf = descontosService.calcularIrrf(funcionarioFind, inss);
+        Double sindical = descontosService.calcularSindical(funcionarioFind);
+        Double valeAlimentacao = descontosService.calcularValeAlimentacao(funcionarioFind);
+        Double valeTransport = descontosService.calcularValeTransporte(funcionarioFind);
 
         Double descontosTotal = inss + fgts + irrf + sindical + valeAlimentacao + valeTransport;
 
         //Benefícios
-        Double horaExtra = beneficioService.horaExtra(id);
-        Double dsr = beneficioService.calcularDSR(id);
-        Double noturno = beneficioService.calcularNoturno(id);
-        Double insalubridade = beneficioService.calcularInsalubridade(id);
-        Double periculosidade = beneficioService.calcularPericulosidade(id);
-        Double salarioFamilia = beneficioService.calcularSalarioFamilia(id);
-        Double diariasViagens = beneficioService.calcularDiariasViagens(id);
-        Double adicional = beneficioService.calcularAdicional(id);
-        Double auxilioCreche = beneficioService.calcularAuxilioCreche(id);
+        Double horaExtra = beneficioService.calcularHoraExtra(funcionarioFind);
+        Double dsr = beneficioService.calcularDSR(funcionarioFind);
+        Double noturno = beneficioService.calcularNoturno(funcionarioFind);
+        Double insalubridade = beneficioService.calcularInsalubridade(funcionarioFind);
+        Double periculosidade = beneficioService.calcularPericulosidade(funcionarioFind);
+        Double salarioFamilia = beneficioService.calcularSalarioFamilia(funcionarioFind);
+        Double diariasViagens = beneficioService.calcularDiariasViagens(funcionarioFind);
+        Double adicional = beneficioService.calcularAdicional(funcionarioFind);
+        Double auxilioCreche = beneficioService.calcularAuxilioCreche(funcionarioFind);
 
         Double beneficiosTotal = horaExtra + dsr + noturno + insalubridade + periculosidade +
                 salarioFamilia + diariasViagens + adicional + auxilioCreche;
@@ -57,7 +58,7 @@ public class FolhaPagamentoService {
 
         Double salarioBruto = optionalFuncionario.get().getInformacaoMensal().getSalarioBruto();
 
-        Double salarioLiquido =  salarioBruto - descontosTotal + beneficiosTotal;
+        Double salarioLiquido = salarioBruto - descontosTotal + beneficiosTotal;
 
         FolhaPagamento folhaPagamento = new FolhaPagamento();
         folhaPagamento.setIdFuncionario(optionalFuncionario.get().getId());
@@ -79,6 +80,7 @@ public class FolhaPagamentoService {
         folhaPagamento.setDiariasViagens(diariasViagens);
         folhaPagamento.setAdicional(adicional);
         folhaPagamento.setAuxilioCreche(auxilioCreche);
+        folhaPagamento.setSalarioBruto(optionalFuncionario.get().getInformacaoMensal().getSalarioBruto());
         folhaPagamento.setSalarioLiquido(salarioLiquido);
 
         folhaPagamentoRepository.save(folhaPagamento);

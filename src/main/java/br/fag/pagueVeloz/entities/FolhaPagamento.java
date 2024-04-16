@@ -43,6 +43,7 @@ public class FolhaPagamento {
     private Double diariasViagens;
     private Double adicional;
     private Double auxilioCreche;
+    private Double salarioBruto;
     private Double salarioLiquido;
 
 }

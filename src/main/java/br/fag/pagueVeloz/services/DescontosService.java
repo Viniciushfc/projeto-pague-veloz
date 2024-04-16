@@ -1,6 +1,5 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.entities.Dependente;
 import br.fag.pagueVeloz.entities.Funcionario;
 import br.fag.pagueVeloz.exceptions.NotFoundException;
 import br.fag.pagueVeloz.repositories.DependenteRepository;
@@ -8,13 +7,9 @@ import br.fag.pagueVeloz.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class DescontosService {
 
-    //INSS ok , IRRF ok , SINCICAL ok, valeA 6% ok valeT10%
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
@@ -22,12 +17,9 @@ public class DescontosService {
     @Autowired
     private DependenteRepository dependenteRepository;
 
-    //calcular o INSS.
-    public Double calcularInss(Long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularInss(Funcionario funcionarioFind) throws NotFoundException {
 
-        Funcionario funcionario = optionalFuncionario.get();
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -42,11 +34,9 @@ public class DescontosService {
         }
     }
 
-    public Double calcularFgts(Long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularFgts(Funcionario funcionarioFind) throws NotFoundException {
 
-        Funcionario funcionario = optionalFuncionario.get();
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -55,15 +45,16 @@ public class DescontosService {
         return depositoMensal;
     }
 
-    //precisa fazer o calculo do INSS e PENSAOALIMENTICIA antes para agregar no IRRF.
-    public Double calcularIrrf(Long id, Double inss) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularIrrf(Funcionario funcionarioFind, Double inss) throws NotFoundException {
 
-        Funcionario funcionario = optionalFuncionario.get();
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         int numeroDependentes = funcionario.getDependentes().size();
+
+        if(funcionario.getDependentes() == null){
+            numeroDependentes = 0;
+        }
 
         double calculo = salarioBruto - inss - (numeroDependentes * 189.59);
 
@@ -82,11 +73,10 @@ public class DescontosService {
         }
     }
 
-    public Double calcularSindical(Long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularSindical(Funcionario funcionarioFind) throws NotFoundException {
 
-        Funcionario funcionario = optionalFuncionario.get();
+        Funcionario funcionario = funcionarioFind;
+
         if (funcionario.getInformacaoMensal().getSindical() == true) {
             Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -96,11 +86,9 @@ public class DescontosService {
         return 0.0;
     }
 
-    public Double calcularValeAlimentacao(Long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularValeAlimentacao(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
-        Funcionario funcionario = optionalFuncionario.get();
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double valeAlimentacao = funcionario.getInformacaoMensal().getValeAlimentacao();
 
@@ -111,11 +99,9 @@ public class DescontosService {
         }
     }
 
-    public Double calcularValeTransporte(Long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularValeTransporte(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
-        Funcionario funcionario = optionalFuncionario.get();
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
         if (salarioBruto * 0.1 <= 300.00) {

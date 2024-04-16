@@ -4,6 +4,7 @@ import br.fag.pagueVeloz.dtos.AdicionarDependenteDTO;
 import br.fag.pagueVeloz.dtos.DependenteDTO;
 import br.fag.pagueVeloz.entities.Dependente;
 import br.fag.pagueVeloz.entities.Funcionario;
+import br.fag.pagueVeloz.exceptions.CustomException;
 import br.fag.pagueVeloz.exceptions.NotFoundException;
 import br.fag.pagueVeloz.repositories.DependenteRepository;
 import br.fag.pagueVeloz.repositories.FuncionarioRepository;
@@ -44,7 +45,7 @@ public class DependenteService {
     }
 
     //Função para listar todos os Dependente.
-    public List<Dependente> exibirDependentes(){
+    public List<Dependente> exibirDependentes() {
         return this.dependenteRepository.findAll();
     }
 
@@ -66,9 +67,9 @@ public class DependenteService {
     }
 
 
-    public Funcionario adicionarDependente(AdicionarDependenteDTO dto) throws NotFoundException {
+    public Funcionario adicionarDependente(long idDependente, AdicionarDependenteDTO dto) throws NotFoundException, CustomException {
         Optional<Funcionario> optionalFuncionario = Optional.ofNullable(funcionarioRepository.findByCpf(dto.cpfResponsavel()).orElseThrow(() -> new NotFoundException()));
-        Optional<Dependente> optionalDependente = Optional.ofNullable(dependenteRepository.findByCpf(dto.cpfDependente()).orElseThrow(() -> new NotFoundException()));
+        Optional<Dependente> optionalDependente = Optional.ofNullable(dependenteRepository.findById(idDependente).orElseThrow(() -> new CustomException("caiu no depente")));
 
         Funcionario funcionario = optionalFuncionario.get();
         Dependente dependente = optionalDependente.get();
@@ -81,7 +82,7 @@ public class DependenteService {
     }
 
     //Função para Desativar um Dependente.
-    public void desativarDependente(Long id) throws Exception{
+    public void desativarDependente(Long id) throws Exception {
         Optional<Dependente> optionalDependente = Optional.ofNullable(this.dependenteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException()));
 

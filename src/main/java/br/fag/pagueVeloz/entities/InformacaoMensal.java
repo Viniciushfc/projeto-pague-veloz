@@ -31,4 +31,8 @@ public class InformacaoMensal {
     private Double valeAlimentacao = 220.00;
     private Double valeTransporte = 300.00;
 
+
+    public InformacaoMensal(Double salarioBruto) {
+        this.salarioBruto = salarioBruto;
+    }
 }

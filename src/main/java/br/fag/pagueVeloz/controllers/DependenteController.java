@@ -42,8 +42,8 @@ public class DependenteController {
     }
 
     @PutMapping("/add/{id}")
-    public ResponseEntity<Object> editarDependente(@PathVariable Long id, AdicionarDependenteDTO dto) throws Exception {
-        Funcionario funcionario = this.dependenteService.adicionarDependente(dto);
+    public ResponseEntity<Object> adicionarDependente(@PathVariable Long id, @RequestBody AdicionarDependenteDTO dto) throws Exception {
+        Funcionario funcionario = this.dependenteService.adicionarDependente(id,dto);
         return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }
 

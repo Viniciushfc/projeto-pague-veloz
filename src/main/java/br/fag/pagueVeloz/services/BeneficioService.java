@@ -19,18 +19,15 @@ public class BeneficioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public Double horaExtra(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularHoraExtra(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double jornadaTrabalho = funcionario.getInformacaoMensal().getJornadaDeTrabalho();
         Double salarioHora = salarioBruto / jornadaTrabalho;
         Double valorHoraExtra = 0.0;
 
-        if (funcionario.getTypePeriodo() == TypePeriodo.NOTURNO){
+        if (funcionario.getTypePeriodo() == TypePeriodo.NOTURNO) {
             valorHoraExtra = salarioHora * (1 + 1);
         } else if (funcionario.getTypePeriodo() == TypePeriodo.MATUTINO) {
             valorHoraExtra = salarioHora * (1 + 0.5);
@@ -40,11 +37,9 @@ public class BeneficioService {
         return totHorasExtras;
     }
 
-    public Double calcularDSR(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularDSR(Funcionario funcionarioFind) throws NotFoundException {
 
-        Funcionario funcionario = optionalFuncionario.get();
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double jornadaTrabalho = funcionario.getInformacaoMensal().getJornadaDeTrabalho();
@@ -54,12 +49,10 @@ public class BeneficioService {
         return valorDSR;
     }
 
-    public Double calcularNoturno(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularNoturno(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
-        Funcionario funcionario = optionalFuncionario.get();
-        if (funcionario.getTypePeriodo() == TypePeriodo.NOTURNO){
+        if (funcionario.getTypePeriodo() == TypePeriodo.NOTURNO) {
             Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
             Double jornadaTrabalho = funcionario.getInformacaoMensal().getJornadaDeTrabalho();
             Double salarioHora = salarioBruto / jornadaTrabalho;
@@ -71,11 +64,8 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularInsalubridade(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularInsalubridade(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioMinimo = 1300.0;
 
@@ -95,15 +85,12 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularPericulosidade(long id) throws NotFoundException {
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularPericulosidade(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
 
-        if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU0 && funcionario.getInformacaoMensal().getPericulosidade()){
+        if (funcionario.getInformacaoMensal().getGrauInsalubridade() == TypeInsalubridade.GRAU0 && funcionario.getInformacaoMensal().getPericulosidade()) {
             Double valorPericulosidade = salarioBruto * 1.3;
             return valorPericulosidade;
         }
@@ -111,11 +98,8 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularSalarioFamilia(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularSalarioFamilia(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         Double unitFilho = (1300.0 / 100) * 5;
 
@@ -127,13 +111,11 @@ public class BeneficioService {
 
     }
 
-    public Double calcularDiariasViagens(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
+    public Double calcularDiariasViagens(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
-        Funcionario funcionario = optionalFuncionario.get();
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
-        if (funcionario.getInformacaoMensal().getViagem()){
+        if (funcionario.getInformacaoMensal().getViagem()) {
             Double valorDiariaViagem = salarioBruto * 0.5;
 
             return valorDiariaViagem;
@@ -141,29 +123,23 @@ public class BeneficioService {
         return 0.0;
     }
 
-    public Double calcularAdicional(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularAdicional(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         LocalDate hoje = LocalDate.now();
         LocalDate diasRegistrado = funcionario.getRegistrado();
 
         long diasEmpregado = ChronoUnit.DAYS.between(diasRegistrado, hoje);
 
-        if (diasEmpregado == 2880){
+        if (diasEmpregado == 2880) {
             return 1500.0;
         }
         return 0.0;
 
     }
 
-    public Double calcularAuxilioCreche(long id) throws NotFoundException{
-        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException()));
-
-        Funcionario funcionario = optionalFuncionario.get();
+    public Double calcularAuxilioCreche(Funcionario funcionarioFind) throws NotFoundException {
+        Funcionario funcionario = funcionarioFind;
 
         Double unitFilho = 400.0;
 
