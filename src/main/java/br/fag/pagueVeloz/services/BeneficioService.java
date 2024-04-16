@@ -19,9 +19,7 @@ public class BeneficioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public Double calcularHoraExtra(Funcionario funcionarioFind) throws NotFoundException {
-        Funcionario funcionario = funcionarioFind;
-
+    public Double calcularHoraExtra(Funcionario funcionario) throws NotFoundException {
         Double salarioBruto = funcionario.getInformacaoMensal().getSalarioBruto();
         Double jornadaTrabalho = funcionario.getInformacaoMensal().getJornadaDeTrabalho();
         Double salarioHora = salarioBruto / jornadaTrabalho;
