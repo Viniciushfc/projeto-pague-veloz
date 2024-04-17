@@ -205,7 +205,6 @@ input[type="submit"]:hover {
 
     <header>
         <h1>PagueVeloz</h1>
-        <button onclick="criarFuncionario()">test</button>
     </header>
     <nav class="menu">
         <ul class="menu-list">
@@ -218,83 +217,85 @@ input[type="submit"]:hover {
 
     <div class="container" id="criarFuncionarioId">
         <h2>Criar Funcionario</h2>
-        <form action="#" id="formCreateFuncionario">
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br>
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
 
-            <label for="rg">RG:</label><br>
-            <input type="text" id="rg" name="rg"><br>
+        <label for="rg">RG:</label><br>
+        <input type="text" id="rg" name="rg"><br>
 
-            <label for="cpfFuncionario">CPF:</label><br>
-            <input type="text" id="cpfFuncionario" name="cpf"><br>
+        <label for="cpfFuncionario">CPF:</label><br>
+        <input type="text" id="cpfFuncionario" name="cpf"><br>
 
-            <label for="cargo">Cargo:</label><br>
-            <select id="cargo" name="cargo">
-                <option value="CEO">CEO</option>
-                <option value="PRESIDENTE">Presidente</option>
-                <option value="DIRETOR">Diretor</option>
-                <option value="GERENTE">Gerente</option>
-                <option value="SUPERVISOR">Supervisor</option>
-                <option value="COORDENADOR">Coordenador</option>
-                <option value="ANALISTA">Analista</option>
-                <option value="ASSISTENTE">Assistente</option>
-                <option value="AUXILIAR">Auxiliar</option>
-                <option value="ESPECIALISTA">Especialista</option>
-                <option value="CONSULTOR">Consultor</option>
-                <option value="ESTAGIARIO">Estagiário</option>
-            </select><br>
+        <label for="cargo">Cargo:</label><br>
+        <select id="cargo" name="cargo">
+            <option value="CEO">CEO</option>
+            <option value="PRESIDENTE">Presidente</option>
+            <option value="DIRETOR">Diretor</option>
+            <option value="GERENTE">Gerente</option>
+            <option value="SUPERVISOR">Supervisor</option>
+            <option value="COORDENADOR">Coordenador</option>
+            <option value="ANALISTA">Analista</option>
+            <option value="ASSISTENTE">Assistente</option>
+            <option value="AUXILIAR">Auxiliar</option>
+            <option value="ESPECIALISTA">Especialista</option>
+            <option value="CONSULTOR">Consultor</option>
+            <option value="ESTAGIARIO">Estagiário</option>
+        </select><br>
 
-            <label for="funcao">Função:</label><br>
-            <input type="text" id="funcao" name="funcao"><br>
+        <label for="funcao">Função:</label><br>
+        <input type="text" id="funcao" name="funcao"><br>
 
-            <label>Sexo:</label><br>
-            <div class="radio-container">
-                <input type="radio" id="masculino" name="sexo" value="MASCULINO">
-                <label for="masculino">Masculino</label>
-            </div>
-            <div class="radio-container">
-                <input type="radio" id="feminino" name="sexo" value="FEMININO">
-                <label for="feminino">Feminino</label><br>
-            </div>
+        <label>Periodo:</label><br>
+        <div class="radio-container">
+            <input type="radio" id="matutino" name="typePeriodo" value="MATUTINO">
+            <label for="matutino">Matutino</label>
+        </div>
+        <div class="radio-container">
+            <input type="radio" id="noturno" name="typePeriodo" value="NOTURNO">
+            <label for="noturno">Noturno</label><br>
+        </div>
 
-            <label for="dataAniversarioF" id="dataF">Data de Aniversário:</label><br>
-            <input type="date" id="dataAniversarioF" name="dataAniversario"><br>
+        <label>Sexo:</label><br>
+        <div class="radio-container">
+            <input type="radio" id="masculino" name="typeSexo" value="MASCULINO">
+            <label for="masculino">Masculino</label>
+        </div>
+        <div class="radio-container">
+            <input type="radio" id="feminino" name="typeSexo" value="FEMININO">
+            <label for="feminino">Feminino</label><br>
+        </div>
 
-            <label for="endereco">Endereço:</label>
-            <input type="text" name="endereco" id="endereco">
+        <label for="dataAniversarioF" id="dataF">Data de Aniversário:</label><br>
+        <input type="date" id="dataAniversarioF" name="dataAniversario"><br>
 
-            <label for="categoriaAss">Assegurado:</label>
-            <select id="categoriaAss" name="cargo">
-                <option value="SEGURADO_EMPREGADO">Segurado Empregado</option>
-                <option value="TRABALHADOR_AVULSO">Trabalhador Avulso</option>
-                <option value="EMPREGADO_CONTRATADO">Empregado Contratado</option>
-                <option value="CONTRIBUENTE_INDIVIDUAL">Contribuente Individual</option>
-            </select><br>
+        <label for="categoriaAss">Assegurado:</label>
+        <select id="categoriaAss" name="cargo">
+            <option value="SEGURADO_EMPREGADO">Segurado Empregado</option>
+            <option value="TRABALHADOR_AVULSO">Trabalhador Avulso</option>
+            <option value="EMPREGADO_CONTRATADO">Empregado Contratado</option>
+            <option value="CONTRIBUENTE_INDIVIDUAL">Contribuente Individual</option>
+        </select><br>
 
-            <h3>Informações Mensais</h3>
+        <h3>Endereço</h3>
 
-            <label for="salarioB">Salario Bruto:</label>
-            <input type="number" name="salarioBruto" id="salarioB" step="0.01">
+        <label for="rua">Rua:</label>
+        <input type="text" name="rua" id="rua">
 
-            <label for="jornadaTrabalho">Jornada de Trabalho::</label>
-            <input type="number" name="jornadaDeTrabalho" id="jornadaTrabalho">
+        <label for="numero">Numero:</label>
+        <input type="text" name="numero" id="numero">
 
-            <label for="horasExtras">Horas Extras:</label>
-            <input type="number" name="horasExtras" id="horasExtras">
+        <label for="bairro">Bairro:</label>
+        <input type="text" name="bairro" id="bairro">
 
-            <label for="adicionalNoturno">Adicional Noturno:</label>
-            <input type="number" name="adicionalNoturno" id="adicionalNoturno" step="0.01">
+        <label for="cidade">Cidade:</label>
+        <input type="text" name="cidade" id="cidade">
 
-            <label for="faltasAtrasos">Faltas e Atrasos:</label>
-            <input type="number" name="faltasAtrasos" id="faltasAtrasos">
+        <label for="cep">CEP:</label>
+        <input type="text" name="cep" id="cep">
 
-            <label for="adiantamento">Adiantamento:</label>
-            <input type="number" name="adiantamento" id="adiantamento" step="0.01">
-
-            <div id="criarF">
-                <input type="submit" value="Criar" id="buttonCriarF">
-            </div>
-        </form>
+        <div id="criarF">
+            <input type="button" value="Criar" id="buttonCriarF" onclick="criarFuncionario()">
+        </div>
     </div>
 
     <div class="container" id="criarDependenteId">
@@ -339,45 +340,198 @@ input[type="submit"]:hover {
             createDepend.style.display = "block";
         }
 
-        function criarFuncionario(){
-            var url = "http://localhost:8080/api/v1/created"
+        function getNome(){
+            var nome = document.getElementById("nome");
+            if(nome){
+                var value = nome.value;
+                return value;
+            }
+            return "None";
+        }
 
-            var json = {
-                "nome": "Nome do Funcionário",
-                "rg": "123456789",
-                "cpf": "123.456.789-10",
-                "typeCargo": "CEO",
-                "funcao": "Gerente de Vendas",
-                "typeSexo": "MASCULINO",
-                "dataAniversario": "1990-05-15",
-                "endereco": {
-                    "rua": "Rua da Empresa",
-                    "numero": "123",
-                    "bairro": "Centro",
-                    "cidade": "Cidade",
-                    "cep": "12345-678"
-                },
-                "typeCategoriaSegurados": "SEGURADO_EMPREGADO",
-                "informacaoMensal": {
-                    "salarioBruto": 5000.00,
-                    "jornadaDeTrabalho": 40,
-                    "horasExtras": 10,
-                    "adicionalNoturno": 100.00,
-                    "faltasAtrasos": 2,
-                    "adiantamento": 500.00,
-                    "sindical": false,
-                    "viagem": false,
-                    "grauInsalubridade": "GRAU1",
-                    "periculosidade": false,
-                    "valeAlimentacao": 300.00,
-                    "valeTransporte": 150.00
+        function getRg(){
+            var rg = document.getElementById("rg");
+            if(rg){
+                var value = rg.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getCpf(){
+            var cpf = document.getElementById("cpfFuncionario");
+            if(cpf){
+                var value = cpf.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getCargo(){
+            var cargo = document.getElementById("cargo");
+            if(cargo){
+                var value = cargo.value;
+                return value;
+            }
+            return "AUXILIAR";
+        }
+
+        function getFuncao(){
+            var funcao = document.getElementById("funcao");
+            if(funcao){
+                var value = funcao.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getPeriodo(){
+            var radioButtons = document.querySelectorAll('input[type="radio"][name="typePeriodo"]');
+
+            for (var i = 0; i < radioButtons.length; i++) {
+                var radioButton = radioButtons[i];
+                if (radioButton.checked) {
+                    var selectedRadioValue = radioButton.value;
+                    return selectedRadioValue;
+                    break;
                 }
             }
+            return "MATUTINO";
+        }
+
+        function getSexo(){
+            var radioButtons = document.querySelectorAll('input[type="radio"][name="typeSexo"]');
+
+            for (var i = 0; i < radioButtons.length; i++) {
+                var radioButton = radioButtons[i];
+                if (radioButton.checked) {
+                    var selectedRadioValue = radioButton.value;
+                    return selectedRadioValue;
+                    break;
+                }
+            }
+            return "MASCULINO";
+        }
+
+        function getDateF(){
+            var dataAniversario = document.getElementById("dataAniversarioF");
+            if(dataAniversario){
+                var value = dataAniversario.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getAssegurado(){
+            var categoriaAss = document.getElementById("categoriaAss");
+            if(categoriaAss){
+                var value = categoriaAss.value;
+                return value;
+            }
+            return "EMPREGADO_CONTRATADO";
+        }
+
+        //endereço
+
+        function getRua(){
+            var rua = document.getElementById("rua");
+            if(rua){
+                var value = rua.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getNumero(){
+            var numero = document.getElementById("numero");
+            if(numero){
+                var value = numero.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getBairro(){
+            var bairro = document.getElementById("bairro");
+            if(bairro){
+                var value = bairro.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getCidade(){
+            var cidade = document.getElementById("cidade");
+            if(cidade){
+                var value = cidade.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function getCep(){
+            var cep = document.getElementById("cep");
+            if(cep){
+                var value = cep.value;
+                return value;
+            }
+            return "None";
+        }
+
+        function limparInputs(){
+            var radioInputs = document.querySelectorAll('input[type="radio"]');
+            radioInputs.forEach(function(input) {
+                input.checked = false;
+            });
+            document.getElementById("nome").value = "";
+            document.getElementById("rg").value = "";
+            document.getElementById("cpfFuncionario").value = "";
+            document.getElementById("cargo").value = "";
+            document.getElementById("funcao").value = "";
+            document.getElementById("dataAniversarioF").value = "";
+            document.getElementById("categoriaAss").value = "";
+            document.getElementById("rua").value = "";
+            document.getElementById("numero").value = "";
+            document.getElementById("bairro").value = "";
+            document.getElementById("cidade").value = "";
+            document.getElementById("cep").value = "";
+        }
+
+        function criarJson(){
+             var json = {
+                "nome": getNome(),
+                "rg": getRg(),
+                "cpf": getCpf(),
+                "typeCargo": getCargo(),
+                "funcao": getFuncao(),
+                "typePeriodo": getPeriodo(),
+                "typeSexo": getSexo(),
+                "dataAniversario": getDateF(),
+                "endereco": {
+                    "rua": getRua(),
+                    "numero": getNumero(),
+                    "bairro": getBairro(),
+                    "cidade": getCidade(),
+                    "cep": getCep()
+                },
+                "typeCategoriaSegurados": getAssegurado(),
+            }
+
+            return json;
+        }
+
+        function criarFuncionario(){
+
+            var url = "http://localhost:8080/api/v1/created"
+
+            var json = criarJson();
+
+            console.log(json);
 
             fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Indica que estamos enviando JSON
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(json)
             })
@@ -389,13 +543,15 @@ input[type="submit"]:hover {
                 }
             })
             .then(data => {
+                limparInputs();
+                alert("Funcionario Criado!");
                 console.log(data);
             })
             .catch(error => {
                 console.error('Erro de requisição:', error);
+                alert("Não foi possivel criar o funcionario, Revise os dados inseridos e tente novamente!");
             });
         }
-
     </script>
     
 </body>
