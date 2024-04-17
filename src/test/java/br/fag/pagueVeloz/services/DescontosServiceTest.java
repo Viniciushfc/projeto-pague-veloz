@@ -40,7 +40,7 @@ public class DescontosServiceTest {
         Endereco endereco = new Endereco();
         InformacaoMensal informacaoMensal = new InformacaoMensal(2000.0);
         LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL, informacaoMensal);
+        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypePeriodo.NOTURNO, TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL);
         Funcionario funcionario = new Funcionario(dto);
         funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -56,7 +56,7 @@ public class DescontosServiceTest {
         Endereco endereco = new Endereco();
         InformacaoMensal informacaoMensal = new InformacaoMensal(2000.0);
         LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL, informacaoMensal);
+        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypePeriodo.NOTURNO, TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL);
         Funcionario funcionario = new Funcionario(dto);
         funcionario.getInformacaoMensal().getSalarioBruto();
 
@@ -72,7 +72,7 @@ public class DescontosServiceTest {
         Endereco endereco = new Endereco();
         InformacaoMensal informacaoMensal = new InformacaoMensal(2000.00);
         LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL, informacaoMensal);
+        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypePeriodo.NOTURNO, TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL);
         Funcionario funcionario = new Funcionario(dto);
         Dependente dependente = new Dependente();
         List<Dependente> dependente1 = new ArrayList<>();

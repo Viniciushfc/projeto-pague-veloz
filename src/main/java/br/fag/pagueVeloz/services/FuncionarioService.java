@@ -56,10 +56,10 @@ public class FuncionarioService {
         funcionario.setRg(dto.rg());
         funcionario.setCpf(dto.cpf());
         funcionario.setTypeSexo(dto.typeSexo());
+        funcionario.setTypePeriodo(dto.typePeriodo());
         funcionario.setDataAniversario(dto.dataAniversario());
         funcionario.setEndereco(dto.endereco());
         funcionario.setTypeCategoriaSegurados(dto.typeCategoriaSegurados());
-        funcionario.setInformacaoMensal(dto.informacaoMensal());
 
         salvarFuncionario(funcionario);
 

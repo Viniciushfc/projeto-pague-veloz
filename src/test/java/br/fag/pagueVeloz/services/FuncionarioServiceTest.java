@@ -44,7 +44,7 @@ public class FuncionarioServiceTest {
         Endereco endereco = new Endereco();
         InformacaoMensal informacaoMensal = new InformacaoMensal();
         LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL, informacaoMensal);
+        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypePeriodo.NOTURNO, TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL);
         Funcionario funcionario = new Funcionario(dto);
         when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
         Funcionario savedFuncionario = funcionarioService.cadastrarFuncionario(dto);
@@ -73,7 +73,7 @@ public class FuncionarioServiceTest {
         Endereco endereco = new Endereco();
         InformacaoMensal informacaoMensal = new InformacaoMensal();
         LocalDate dataAniversario = LocalDate.parse("2010-01-01");
-        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL, informacaoMensal);
+        FuncionarioDTO dto = new FuncionarioDTO("NOME", "rg", "cpf", TypeCargo.ANALISTA, "funcao", TypePeriodo.NOTURNO, TypeSexo.FEMININO, dataAniversario, endereco, TypeCategoriaSegurados.CONTRIBUENTE_INDIVIDUAL);
         Funcionario funcionario = new Funcionario();
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
         when(funcionarioRepository.save(funcionario)).thenReturn(funcionario);
