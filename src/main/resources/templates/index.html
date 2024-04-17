@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de Pagamento - PagueVeloz</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+        }
+
+body{
+    background-image: linear-gradient(rgb(255, 255, 255), lightgray);
+    background-repeat: no-repeat;
+}
+
+header{
+    background-image: linear-gradient(rgb(255, 255, 255), lightgray);
+    height: 15vh;
+    width: 98,9vw;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    background-color: #333;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    display: inline-block;
+}
+
+.menu-list li button {
+    display: block;
+    padding: 10px 20px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-list li button:hover {
+    background-color: #555;
+}
+
+@media (max-width: 768px) {
+    .menu-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-list li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-list {
+        display: block;
+    }
+
+    .menu-list li {
+        display: inline-block;
+    }
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h3{
+    text-align: center;
+    color: #333;
+    margin: 20px 0 10px 0;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.container h2{
+    margin-bottom: 60px;
+    color: #333;
+    font-weight: bolder;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+}
+
+.radio-container label {
+    margin-right: 10px;
+}
+
+#dataF{
+    margin-top: 20px;
+}
+
+#dataD{
+    margin-top: 20px;
+}
+
+#dataAniversarioF{
+    margin-bottom: 50px;
+}
+
+#dataAniversarioD{
+    margin-bottom: 50px;
+}
+
+#criarF{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#criarD{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buttonCriarF{
+    width: 200px;
+}
+
+#buttonCriarD{
+    width: 200px;
+}
+
+#criarDependenteId{
+    display: none;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PagueVeloz</h1>
+    </header>
+    <nav class="menu">
+        <ul class="menu-list">
+            <li><button id="createF" onclick="createF()">Criar Funcionario</button></li>
+            <li><button onclick="createD()">Criar Dependente</button></li>
+            <li><button>Exibir Funcionário</button></li>
+            <li><button>Exibir Folha</button></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="criarFuncionarioId">
+        <h2>Criar Funcionario</h2>
+        <form action="index.html" method="POST" id="formCreateFuncionario">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br>
+            
+            <label for="rg">RG:</label><br>
+            <input type="text" id="rg" name="rg"><br>
+            
+            <label for="cpfFuncionario">CPF:</label><br>
+            <input type="text" id="cpfFuncionario" name="cpf"><br>
+            
+            <label for="cargo">Cargo:</label><br>
+            <select id="cargo" name="cargo">
+                <option value="CEO">CEO</option>
+                <option value="PRESIDENTE">Presidente</option>
+                <option value="DIRETOR">Diretor</option>
+                <option value="GERENTE">Gerente</option>
+                <option value="SUPERVISOR">Supervisor</option>
+                <option value="COORDENADOR">Coordenador</option>
+                <option value="ANALISTA">Analista</option>
+                <option value="ASSISTENTE">Assistente</option>
+                <option value="AUXILIAR">Auxiliar</option>
+                <option value="ESPECIALISTA">Especialista</option>
+                <option value="CONSULTOR">Consultor</option>
+                <option value="ESTAGIARIO">Estagiário</option>
+            </select><br>
+            
+            <label for="funcao">Função:</label><br>
+            <input type="text" id="funcao" name="funcao"><br>
+            
+            <label>Sexo:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="masculino" name="sexo" value="MASCULINO">
+                <label for="masculino">Masculino</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="feminino" name="sexo" value="FEMININO">
+                <label for="feminino">Feminino</label><br>
+            </div>
+            
+            <label for="dataAniversarioF" id="dataF">Data de Aniversário:</label><br>
+            <input type="date" id="dataAniversarioF" name="dataAniversario"><br>
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" name="endereco" id="endereco">
+
+            <label for="categoriaAss">Assegurado:</label>
+            <select id="categoriaAss" name="cargo">
+                <option value="SEGURADO_EMPREGADO">Segurado Empregado</option>
+                <option value="TRABALHADOR_AVULSO">Trabalhador Avulso</option>
+                <option value="EMPREGADO_CONTRATADO">Empregado Contratado</option>
+                <option value="CONTRIBUENTE_INDIVIDUAL">Contribuente Individual</option>
+            </select><br>
+
+            <h3>Informações Mensais</h3>
+
+            <label for="salarioB">Salario Bruto:</label>
+            <input type="number" name="salarioBruto" id="salarioB" step="0.01">
+
+            <label for="jornadaTrabalho">Jornada de Trabalho::</label>
+            <input type="number" name="jornadaDeTrabalho" id="jornadaTrabalho">
+
+            <label for="horasExtras">Horas Extras:</label>
+            <input type="number" name="horasExtras" id="horasExtras">
+
+            <label for="adicionalNoturno">Adicional Noturno:</label>
+            <input type="number" name="adicionalNoturno" id="adicionalNoturno" step="0.01">
+
+            <label for="faltasAtrasos">Faltas e Atrasos:</label>
+            <input type="number" name="faltasAtrasos" id="faltasAtrasos">
+
+            <label for="adiantamento">Adiantamento:</label>
+            <input type="number" name="adiantamento" id="adiantamento" step="0.01">
+
+            <div id="criarF">
+                <input type="submit" value="Criar" id="buttonCriarF">
+            </div>
+        </form>
+    </div>
+
+    <div class="container" id="criarDependenteId">
+        <h2>Criar Dependente</h2>
+        <form action="index.html" method="POST">
+            <label for="cpfResponsavel">CPF do Responsável:</label><br>
+            <input type="text" id="cpfResponsavel" name="cpfResponsavel"><br>
+            
+            <label for="nomeDependente">Nome do Dependente:</label><br>
+            <input type="text" id="nomeDependente" name="nomeDependente"><br>
+            
+            <label for="cpfDependente">CPF do Dependente:</label><br>
+            <input type="text" id="cpfDependente" name="cpf"><br>
+            
+            <label for="grauDeParentesco">Grau de Parentesco:</label><br>
+            <input type="text" id="grauDeParentesco" name="grauDeParentesco"><br>
+            
+            <label for="dataAniversarioD" id="dataD">Data de Aniversário:</label><br>
+            <input type="date" id="dataAniversarioD" name="dataAniversario"><br>
+            
+            <div id="criarD">
+                <input type="submit" value="Criar" id="buttonCriarD">
+            </div>
+        </form>
+    </div>
+
+
+
+    <script src="../static/javaScript/script.js"></script>
+
+    <script>
+        var createFuncio = document.getElementById("criarFuncionarioId");
+        var createDepend = document.getElementById("criarDependenteId")
+
+        function createF(){
+            createFuncio.style.display = "block";
+            createDepend.style.display = "none";
+        }
+
+        function createD(){
+            createFuncio.style.display = "none";
+            createDepend.style.display = "block";
+        }
+    </script>
+    
+</body>
+</html>
