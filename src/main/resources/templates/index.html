@@ -205,6 +205,7 @@ input[type="submit"]:hover {
 
     <header>
         <h1>PagueVeloz</h1>
+        <button onclick="criarFuncionario()">test</button>
     </header>
     <nav class="menu">
         <ul class="menu-list">
@@ -217,7 +218,7 @@ input[type="submit"]:hover {
 
     <div class="container" id="criarFuncionarioId">
         <h2>Criar Funcionario</h2>
-        <form action="index.html" method="POST" id="formCreateFuncionario">
+        <form action="#" id="formCreateFuncionario">
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome"><br>
 
@@ -298,7 +299,7 @@ input[type="submit"]:hover {
 
     <div class="container" id="criarDependenteId">
         <h2>Criar Dependente</h2>
-        <form action="index.html" method="POST">
+        <form action="#">
             <label for="cpfResponsavel">CPF do Responsável:</label><br>
             <input type="text" id="cpfResponsavel" name="cpfResponsavel"><br>
 
@@ -320,6 +321,10 @@ input[type="submit"]:hover {
         </form>
     </div>
 
+    <div id="exibirFuncionarioId">
+        <p id="exibir"></p>
+    </div>
+
     <script>
         var createFuncio = document.getElementById("criarFuncionarioId");
         var createDepend = document.getElementById("criarDependenteId")
@@ -333,6 +338,64 @@ input[type="submit"]:hover {
             createFuncio.style.display = "none";
             createDepend.style.display = "block";
         }
+
+        function criarFuncionario(){
+            var url = "http://localhost:8080/api/v1/created"
+
+            var json = {
+                "nome": "Nome do Funcionário",
+                "rg": "123456789",
+                "cpf": "123.456.789-10",
+                "typeCargo": "CEO",
+                "funcao": "Gerente de Vendas",
+                "typeSexo": "MASCULINO",
+                "dataAniversario": "1990-05-15",
+                "endereco": {
+                    "rua": "Rua da Empresa",
+                    "numero": "123",
+                    "bairro": "Centro",
+                    "cidade": "Cidade",
+                    "cep": "12345-678"
+                },
+                "typeCategoriaSegurados": "SEGURADO_EMPREGADO",
+                "informacaoMensal": {
+                    "salarioBruto": 5000.00,
+                    "jornadaDeTrabalho": 40,
+                    "horasExtras": 10,
+                    "adicionalNoturno": 100.00,
+                    "faltasAtrasos": 2,
+                    "adiantamento": 500.00,
+                    "sindical": false,
+                    "viagem": false,
+                    "grauInsalubridade": "GRAU1",
+                    "periculosidade": false,
+                    "valeAlimentacao": 300.00,
+                    "valeTransporte": 150.00
+                }
+            }
+
+            fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Indica que estamos enviando JSON
+            },
+            body: JSON.stringify(json)
+            })
+            .then(response => {
+                if (response.status == 201) {
+                    return response.json();
+                }else{
+                    throw new Error('Erro ao acessar a API: ' + response.status);
+                }
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erro de requisição:', error);
+            });
+        }
+
     </script>
     
 </body>
