@@ -58,10 +58,10 @@ public class Funcionario {
         this.cpf = dto.cpf();
         this.typeCargo = dto.typeCargo();
         this.funcao = dto.funcao();
+        this.typePeriodo = dto.typePeriodo();
         this.typeSexo  = dto.typeSexo();
         this.dataAniversario = dto.dataAniversario();
         this.endereco = dto.endereco();
         this.typeCategoriaSegurados = dto.typeCategoriaSegurados();
-        this.informacaoMensal = dto.informacaoMensal();
     }
 }
