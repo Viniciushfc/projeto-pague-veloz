@@ -11,11 +11,11 @@ public record FuncionarioDTO(
         String cpf,
         TypeCargo typeCargo,
         String funcao,
+        TypePeriodo typePeriodo,
         TypeSexo typeSexo,
         LocalDate dataAniversario,
         Endereco endereco,
-        TypeCategoriaSegurados typeCategoriaSegurados,
-        InformacaoMensal informacaoMensal
+        TypeCategoriaSegurados typeCategoriaSegurados
         ) {
 
 }
