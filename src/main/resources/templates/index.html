@@ -15,7 +15,7 @@
         <ul class="menu-list">
             <li><button id="createF" onclick="createF()">Criar Funcionario</button></li>
             <li><button onclick="createD()">Criar Dependente</button></li>
-            <li><button>Exibir Funcionário</button></li>
+            <li><button onclick="exibirF()">Exibir Funcionário</button></li>
             <li><button>Exibir Folha</button></li>
         </ul>
     </nav>
@@ -122,12 +122,20 @@
             <input type="date" id="dataAniversarioD" name="dataAniversario"><br>
 
             <div id="criarD">
-                <input type="submit" value="Criar" id="buttonCriarD">
+                <input type="button" value="Criar" id="buttonCriarD" onclick="criarDependente()">
             </div>
         </form>
     </div>
 
-    <div id="exibirFuncionarioId">
+    <div class="container" id="exibirFuncionarioId">
+        <h2>Exibir Funcionário</h2>
+        <label for="exibirFuncionarioId">Funcionario:</label>
+        <select name="exibirFuncionario" id="iExibirFuncionario">
+
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
+
         <p id="exibir"></p>
     </div>
 

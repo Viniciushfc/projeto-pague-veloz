@@ -8,6 +8,7 @@
 body{
     background-image: linear-gradient(rgb(255, 255, 255), lightgray);
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 header{
@@ -124,7 +125,7 @@ input[type="radio"] {
     margin-right: 5px;
 }
 
-input[type="submit"] {
+input[type="button"] {
     background-color: #4CAF50;
     color: white;
     padding: 15px 20px;
@@ -135,7 +136,7 @@ input[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
+input[type="button"]:hover {
     background-color: #45a049;
 }
 
@@ -190,5 +191,9 @@ input[type="submit"]:hover {
 }
 
 #criarDependenteId{
+    display: none;
+}
+
+#exibirFuncionarioId{
     display: none;
 }
