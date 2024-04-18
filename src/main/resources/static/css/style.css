@@ -203,11 +203,11 @@ input[type="button"]:hover {
     width: 200px;
 }
 
-#criarDependenteId{
-    display: none;
-}
-
-#exibirFuncionarioId{
+#criarDependenteId,
+#editarFuncionarioId,
+#exibirFuncionarioId,
+#editarFuncionario,
+#desabilitarFuncionarioId{
     display: none;
 }
 
