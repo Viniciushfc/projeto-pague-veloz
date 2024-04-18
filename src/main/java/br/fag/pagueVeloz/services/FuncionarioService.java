@@ -55,6 +55,8 @@ public class FuncionarioService {
         funcionario.setNome(dto.nome());
         funcionario.setRg(dto.rg());
         funcionario.setCpf(dto.cpf());
+        funcionario.setTypeCargo(dto.typeCargo());
+        funcionario.setFuncao(dto.funcao());
         funcionario.setTypeSexo(dto.typeSexo());
         funcionario.setTypePeriodo(dto.typePeriodo());
         funcionario.setDataAniversario(dto.dataAniversario());

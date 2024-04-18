@@ -36,7 +36,8 @@ public class FuncionarioController {
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<Object> editarFuncionario(@PathVariable Long id, FuncionarioDTO dto) throws Exception {
+    public ResponseEntity<Object> editarFuncionario(@PathVariable Long id, @RequestBody FuncionarioDTO dto) throws Exception {
+        System.out.println(dto);
         Funcionario funcionario = this.funcionarioService.editarFuncionario(id, dto);
         return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }

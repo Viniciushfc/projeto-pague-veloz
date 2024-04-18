@@ -122,6 +122,123 @@
         </div>
     </div>
 
+    <div class="container" id="exibirFuncionarioId">
+        <h2>Exibir Funcionário</h2>
+        <label for="exibirFuncionarioId">Funcionario:</label>
+        <select name="exibirFuncionario" id="iExibirFuncionario">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
+
+        <p id="exibir"></p>
+    </div>
+
+    <div class="container" id="editarFuncionarioId">
+        <h2>Editar Funcionário</h2>
+        <label for="editarFuncionarioId">Funcionario:</label>
+        <select name="editarFuncionarioId" id="iEditarFuncionarioId" onchange="buscarFuncionario()">
+            <option value="none">---</option>
+        </select>
+
+        <div class="container" id="editarFuncionario">
+            <h2>Criar Funcionario</h2>
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nomeEditar" name="nome"><br>
+    
+            <label for="rg">RG:</label><br>
+            <input type="text" id="rgEditar" name="rg"><br>
+    
+            <label for="cpfFuncionario">CPF:</label><br>
+            <input type="text" id="cpfFuncionarioEditar" name="cpf"><br>
+    
+            <label for="cargo">Cargo:</label><br>
+            <select id="cargoEditar" name="cargo">
+                <option value="CEO">CEO</option>
+                <option value="PRESIDENTE">Presidente</option>
+                <option value="DIRETOR">Diretor</option>
+                <option value="GERENTE">Gerente</option>
+                <option value="SUPERVISOR">Supervisor</option>
+                <option value="COORDENADOR">Coordenador</option>
+                <option value="ANALISTA">Analista</option>
+                <option value="ASSISTENTE">Assistente</option>
+                <option value="AUXILIAR">Auxiliar</option>
+                <option value="ESPECIALISTA">Especialista</option>
+                <option value="CONSULTOR">Consultor</option>
+                <option value="ESTAGIARIO">Estagiário</option>
+            </select><br>
+    
+            <label for="funcao">Função:</label><br>
+            <input type="text" id="funcaoEditar" name="funcao"><br>
+    
+            <label>Periodo:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="matutino" name="typePeriodo" value="MATUTINO">
+                <label for="matutino">Matutino</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="noturno" name="typePeriodo" value="NOTURNO">
+                <label for="noturno">Noturno</label><br>
+            </div>
+    
+            <label>Sexo:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="masculino" name="typeSexo" value="MASCULINO">
+                <label for="masculino">Masculino</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="feminino" name="typeSexo" value="FEMININO">
+                <label for="feminino">Feminino</label><br>
+            </div>
+    
+            <label for="dataAniversarioFEdit" id="dataFEditar">Data de Aniversário:</label><br>
+            <input type="date" id="dataAniversarioFEdit" name="dataAniversario"><br>
+    
+            <label for="categoriaAss">Assegurado:</label>
+            <select id="categoriaAssEditar" name="cargo">
+                <option value="SEGURADO_EMPREGADO">Segurado Empregado</option>
+                <option value="TRABALHADOR_AVULSO">Trabalhador Avulso</option>
+                <option value="EMPREGADO_CONTRATADO">Empregado Contratado</option>
+                <option value="CONTRIBUENTE_INDIVIDUAL">Contribuente Individual</option>
+            </select><br>
+    
+            <h3>Endereço</h3>
+    
+            <label for="rua">Rua:</label>
+            <input type="text" name="rua" id="ruaEditar">
+    
+            <label for="numero">Numero:</label>
+            <input type="text" name="numero" id="numeroEditar">
+    
+            <label for="bairro">Bairro:</label>
+            <input type="text" name="bairro" id="bairroEditar">
+    
+            <label for="cidade">Cidade:</label>
+            <input type="text" name="cidade" id="cidadeEditar">
+    
+            <label for="cep">CEP:</label>
+            <input type="text" name="cep" id="cepEditar">
+    
+            <div id="criarF">
+                <input type="button" value="Editar" id="buttonEditarF" onclick="editarFuncionarioInfo()">
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="desabilitarFuncionarioId">
+        <h2>Desabilitar Funcionário</h2>
+        <label for="iDesabilitarFuncionarioId">Funcionario:</label>
+        <select name="exibirFuncionario" id="iDesabilitarFuncionarioId">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
+
+        <p id="exibir"></p>
+
+        <input type="button" value="Desabilitar Funcionario" id="buttonDesabilitarF" onclick="desabilitarFuncionario()" disabled>
+    </div>
+
     <div class="container" id="criarDependenteId">
         <h2>Criar Dependente</h2>
         <form action="#">
@@ -146,17 +263,7 @@
         </form>
     </div>
 
-    <div class="container" id="exibirFuncionarioId">
-        <h2>Exibir Funcionário</h2>
-        <label for="exibirFuncionarioId">Funcionario:</label>
-        <select name="exibirFuncionario" id="iExibirFuncionario">
-
-        </select>
-
-        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
-
-        <p id="exibir"></p>
-    </div>
+    
 
     <script src="../static/js/script.js"></script>
     

@@ -1,25 +1,38 @@
 var createFuncio = document.getElementById("criarFuncionarioId");
 var createDepend = document.getElementById("criarDependenteId");
 var exibirFuncio = document.getElementById("exibirFuncionarioId");
+var editarFuncio = document.getElementById("editarFuncionarioId");
 
 var selectIds = document.getElementById("iExibirFuncionario");
+var selectIdsEditar = document.getElementById("iEditarFuncionarioId");
+var selectIdsDesabilitar = document.getElementById("iDesabilitarFuncionarioId");
 
 function createF(){
     createFuncio.style.display = "block";
     createDepend.style.display = "none";
     exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
 }
 
 function createD(){
     createFuncio.style.display = "none";
     createDepend.style.display = "block";
     exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
 }
 
 function exibirF(){
     createFuncio.style.display = "none";
     createDepend.style.display = "none";
     exibirFuncio.style.display = "block";
+    editarFuncio.style.display = "none";
+}
+
+function editarF(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "block";
 }
 
 function getNome(){
@@ -229,11 +242,22 @@ function criarFuncionario(){
         alert("Funcionario Criado!");
         console.log(data);
 
-        var option = document.createElement("option");
-        option.value = data['id'];
-        option.textContent = '' + data['nome'] + " - CPF: " + data['cpf'];
+        var optionExibir = document.createElement("option");
+        optionExibir.value = data['id'];
+        optionExibir.textContent = '' + data['nome'] + " - CPF: " + data['cpf'];
 
-        selectIds.appendChild(option);
+        var optionEditar = document.createElement("option");
+        optionEditar.value = data['id'];
+        optionEditar.textContent = '' + data['nome'] + " - CPF: " + data['cpf'];
+
+        var optionDesabilitar = document.createElement("option");
+        optionDesabilitar.value = data['id'];
+        optionDesabilitar.textContent = '' + data['nome'] + " - CPF: " + data['cpf'];
+
+        selectIdsEditar.appendChild(optionEditar);
+        selectIds.appendChild(optionExibir);
+        selectIdsDesabilitar.appendChild(optionDesabilitar);
+        
 
     })
     .catch(error => {
@@ -295,4 +319,219 @@ function encontrarFuncionario(){
             console.error('Erro de requisição:', error);
             alert("Não foi possivel exibir o funcionario, tente novamente!");
         });
+}
+
+function buscarFuncionario(){
+    var valueSelect = selectIdsEditar.value;
+    var inputs = document.getElementById("editarFuncionario");
+    if(valueSelect == "none"){
+        inputs.style.display = "none"
+    }else{
+        inputs.style.display = "block"
+    }
+
+    
+
+    if(selectIdsEditar){
+        var value = selectIdsEditar.value;
+    }
+
+    var id = value;
+    var url = "http://localhost:8080/api/v1/" + id;
+
+    fetch(url)
+        .then(response => {
+            if (response.status == 200) {
+                return response.json();
+            }else{
+                throw new Error('Erro ao acessar a API: ' + response.status);
+            }
+        })
+        .then(data => {
+
+            var nome = document.getElementById("nomeEditar");
+            nome.value = data.nome;
+
+            var rg = document.getElementById("rgEditar");
+            rg.value = data.rg;
+
+            var cpf = document.getElementById("cpfFuncionarioEditar");
+            cpf.value = data.cpf;
+
+            var cargo = document.getElementById("cargoEditar");
+            for (var i = 0; i < cargo.options.length; i++) {
+                if (cargo.options[i].value === data.typeCargo) {
+                    cargo.options[i].selected = true;
+                  break;
+                }
+            }
+
+            var funcao = document.getElementById("funcaoEditar");
+            funcao.value = data.funcao;
+
+            var sexoRadios = document.querySelectorAll('input[type="radio"][name="typeSexo"]');
+            sexoRadios.forEach(function(input) {
+                if (input.value.toUpperCase().includes(data.typeSexo)) {
+                  input.checked = true; 
+                } else {
+                  input.checked = false; 
+                }
+            });
+
+            var periodoRadios = document.querySelectorAll('input[type="radio"][name="typePeriodo"]');
+            periodoRadios.forEach(function(input) {
+                if (input.value.toUpperCase().includes(data.typePeriodo)) {
+                  input.checked = true; 
+                } else {
+                  input.checked = false; 
+                }
+            });
+
+            var dataN = document.getElementById("dataAniversarioFEdit");
+            dataN.value = data.dataAniversario;
+
+            var assegurado = document.getElementById("categoriaAssEditar");
+            for (var i = 0; i < assegurado.options.length; i++) {
+                if (assegurado.options[i].value === data.typeCategoriaSegurados) {
+                    assegurado.options[i].selected = true;
+                  break;
+                }
+            }
+
+            var rua = document.getElementById("ruaEditar");
+            rua.value = data.endereco.rua;
+
+            var numero = document.getElementById("numeroEditar");
+            numero.value = data.endereco.numero;
+
+            var bairro = document.getElementById("bairroEditar");
+            bairro.value = data.endereco.bairro;
+
+            var cidade = document.getElementById("cidadeEditar");
+            cidade.value = data.endereco.cidade;
+
+            var cep = document.getElementById("cepEditar");
+            cep.value = data.endereco.cep;
+    
+        })
+        .catch(error => {
+            console.error('Erro de requisição:', error);
+            alert("Não foi possivel exibir o funcionario, tente novamente!");
+        });
+
+}
+
+function montarJsonEditar(){
+    var nome = document.getElementById("nomeEditar");
+    var rg = document.getElementById("rgEditar");
+    var cpf = document.getElementById("cpfFuncionarioEditar");
+    var cargo = document.getElementById("cargoEditar");
+    var funcao = document.getElementById("funcaoEditar");
+    var sexoRadios = document.querySelectorAll('input[type="radio"][name="typeSexo"]');
+    for (var i = 0; i < sexoRadios.length; i++) {
+        var radioButton = sexoRadios[i];
+        if (radioButton.checked) {
+            var selectedSexoValue = radioButton.value;
+        }
+    }
+    var periodoRadios = document.querySelectorAll('input[type="radio"][name="typePeriodo"]');
+    for (var i = 0; i < periodoRadios.length; i++) {
+        var radioButton = periodoRadios[i];
+        if (radioButton.checked) {
+            var selectedPeriodoValue = radioButton.value;
+        }
+    }
+    var dataN = document.getElementById("dataAniversarioFEdit");
+    var assegurado = document.getElementById("categoriaAssEditar");
+    var rua = document.getElementById("ruaEditar");
+    var numero = document.getElementById("numeroEditar");
+    var bairro = document.getElementById("bairroEditar");
+    var cidade = document.getElementById("cidadeEditar");
+    var cep = document.getElementById("cepEditar");
+
+
+    var json = {
+        "nome": nome.value,
+        "rg": rg.value,
+        "cpf": cpf.value,
+        "typeCargo": cargo.value,
+        "funcao": funcao.value,
+        "typePeriodo": selectedPeriodoValue,
+        "typeSexo": selectedSexoValue,
+        "dataAniversario": dataN.value,
+        "endereco": {
+            "rua": rua.value,
+            "numero": numero.value,
+            "bairro": bairro.value,
+            "cidade": cidade.value,
+            "cep": cep.value
+        },
+        "typeCategoriaSegurados": assegurado.value,
+    }
+
+    return json;
+}
+
+function editarFuncionarioInfo(){
+    if(selectIdsEditar){
+        var value = selectIdsEditar.value;
+    }
+
+    var id = value;
+
+    var url = "http://localhost:8080/api/v1/put/" + id;
+
+    var json = montarJsonEditar();
+
+    console.log(json);
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(json)
+        })
+        .then(response => {
+            if (response.status == 200) {
+                console.log(response);
+                return response.json();
+            }else{
+                throw new Error('Erro ao acessar a API: ' + response.status);
+            }
+        })
+        .then(data => {
+            alert("Funcionário Editado com sucesso!");
+            console.log(data)
+
+            for (var i = 0; i < selectIdsEditar.options.length; i++) {
+                if (cargo.options[i].value == "none") {
+                    cargo.options[i].selected = true;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < selectIds.options.length; i++) {
+                if (selectIds.options[i].value == id) {
+                    selectIds.options[i].textContent = "" + data["nome"] + " - CPF:" + data["cpf"];
+                  break;
+                }
+            }
+
+            for (var i = 0; i < selectIdsEditar.options.length; i++) {
+                if (selectIdsEditar.options[i].value == id) {
+                    selectIdsEditar.options[i].textContent = "" + data["nome"] + " - CPF:" + data["cpf"];
+                  break;
+                }
+            }
+    
+        })
+        .catch(error => {
+            console.error('Erro de requisição:', error);
+            alert("Não foi possivel criar o funcionario, Revise os dados inseridos e tente novamente!");
+        });
+    
+}
+
+function desabilitarFuncionario(){
+    
 }
