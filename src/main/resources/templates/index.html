@@ -18,6 +18,7 @@
                 <div class="dropdown-content">
                     <button id="createF" onclick="createF()">Criar Funcionario</button>
                     <button onclick="exibirF()">Exibir Funcionário</button>
+                    <button onclick="exibirTodosF()">Exibir Todos Funcionarios</button>
                     <button onclick="editarF()">Editar Funcionário</button>
                     <button onclick="desativarF()">Desativar Funcionário</button>
                     <button onclick="ativarF()">Ativar Funcionário</button>
@@ -28,12 +29,13 @@
                 <div class="dropdown-content">
                     <button onclick="createD()">Criar Dependente</button>
                     <button onclick="exibirD()">Exibir Dependente</button>
+                    <button onclick="exibirTodosD()">Exibir Todos Dependentes</button>
                     <button onclick="editarD()">Editar Dependente</button>
                     <button onclick="desativarD()">Desativar Dependente</button>
                     <button onclick="ativarD()">Ativar Dependente</button>
                 </div>
             </li>
-            
+            <li><button onclick="addDependente()">Adicionar Dependente Funcionario</button></li>
             <li><button onclick="calcularFolha()">Adicionar Informações</button></li>
             <li><button onclick="calcFolha()">Calcular Folha</button></li>
         </ul>
@@ -132,6 +134,12 @@
         <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
 
         <p id="exibir"></p>
+    </div>
+
+    <div class="container" id="exibirTodosFuncionarioId">
+        <h2>Exibir Funcionário</h2>
+
+        <p id="exibirTodos"></p>
     </div>
 
     <div class="container" id="editarFuncionarioId">
@@ -286,6 +294,12 @@
         <p id="exibirD"></p>
     </div>
 
+    <div class="container" id="exibirTodosDependenteId">
+        <h2>Exibir Dependentes</h2>
+
+        <p id="exibirTodosD"></p>
+    </div>
+
     <div class="container" id="editarDependenteId">
         <h2>Editar Dependente</h2>
         <label for="iEditarDependenteId">Dependente:</label>
@@ -419,8 +433,20 @@
         </select>
 
         <input type="button" value="Calcular Folha" id="calcularFolha" onclick="calcularFolhaPagamento()">
+        
+        <p id="exibirFid"></p>
+    </div>
 
-        <p id="folha"></p>
+    <div class="container" id="addDependenteFuncionario">
+        <label for="addDependFuncio">Dependente:</label>
+        <select name="addDependFuncio" id="addDependFuncio">
+            <option value="">---</option>
+        </select>
+
+        <label for="cpfF">CPF Funcionario:</label><br>
+        <input type="text" id="cpfF" name="cpfF"><br>
+
+        <input type="button" value="Adicionar Dependente" onclick="addDependFuncio()">
     </div>
 
     

@@ -1,17 +1,20 @@
 var createFuncio = document.getElementById("criarFuncionarioId");
 var exibirFuncio = document.getElementById("exibirFuncionarioId");
+var exibirAllFuncio = document.getElementById("exibirTodosFuncionarioId");
 var editarFuncio = document.getElementById("editarFuncionarioId");
 var desabilitarFuncio = document.getElementById("desabilitarFuncionarioId");
 var ativarFuncio = document.getElementById("ativarFuncionarioId");
 
 var createDepend = document.getElementById("criarDependenteId");
 var exibirDepend = document.getElementById("exibirDependenteId");
+var exibirAllDep = document.getElementById("exibirTodosDependenteId");
 var editarDepend = document.getElementById("editarDependenteId");
 var desabiDepend = document.getElementById("desabilitarDependenteId");
 var ativarDepend = document.getElementById("ativarDependenteId");
 
+var addDependContainer = document.getElementById("addDependenteFuncionario");
 var folhaPagamento = document.getElementById("folhaPagamento");
-var calcularFolhaC = document.getElementById("calcularFolhaC")
+var calcularFolhaC = document.getElementById("calcularFolhaC");
 
 
 
@@ -26,6 +29,7 @@ var selectExibirD = document.getElementById("iExibirDependente");
 var selectEditarD = document.getElementById("iEditarDependenteId");
 var selectDesabilitarD = document.getElementById("iDesabilitarDependenteId");
 var selectAtivarD = document.getElementById("iAtivarDependenteId");
+var selectAddDepend  = document.getElementById("addDependFuncio");
 
 
 function createF(){
@@ -41,6 +45,9 @@ function createF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function exibirF(){
@@ -56,6 +63,29 @@ function exibirF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
+}
+
+function exibirTodosF(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
+    desabilitarFuncio.style.display = "none";
+    exibirDepend.style.display = "none";
+    editarDepend.style.display = "none";
+    desabiDepend.style.display = "none";
+    ativarFuncio.style.display = "none";
+    ativarDepend.style.display = "none";
+    folhaPagamento.style.display = "none";
+    calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "block";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
+
+    exibirTodosFuncio();
 }
 
 function editarF(){
@@ -71,6 +101,9 @@ function editarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function desativarF(){
@@ -86,6 +119,9 @@ function desativarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function ativarF(){
@@ -101,7 +137,11 @@ function ativarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
+
 
 function createD(){
     createFuncio.style.display = "none";
@@ -116,6 +156,9 @@ function createD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function exibirD(){
@@ -131,6 +174,29 @@ function exibirD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
+}
+
+function exibirTodosD(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
+    desabilitarFuncio.style.display = "none";
+    exibirDepend.style.display = "none";
+    editarDepend.style.display = "none";
+    desabiDepend.style.display = "none";
+    ativarFuncio.style.display = "none";
+    ativarDepend.style.display = "none";
+    folhaPagamento.style.display = "none";
+    calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "block";
+    addDependContainer.style.display = "none";
+
+    exibirTodosDepend();
 }
 
 function editarD(){
@@ -146,6 +212,9 @@ function editarD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function desativarD(){
@@ -161,6 +230,9 @@ function desativarD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function ativarD(){
@@ -176,7 +248,11 @@ function ativarD(){
     ativarDepend.style.display = "block";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
+
 
 function calcularFolha(){
     createFuncio.style.display = "none";
@@ -191,6 +267,9 @@ function calcularFolha(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "block";
     calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
 }
 
 function calcFolha(){
@@ -206,6 +285,27 @@ function calcFolha(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "block";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "none";
+}
+
+function addDependente(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
+    desabilitarFuncio.style.display = "none";
+    exibirDepend.style.display = "none";
+    editarDepend.style.display = "none";
+    desabiDepend.style.display = "none";
+    ativarFuncio.style.display = "none";
+    ativarDepend.style.display = "none";
+    folhaPagamento.style.display = "none";
+    calcularFolhaC.style.display = "none";
+    exibirAllFuncio.style.display = "none";
+    exibirAllDep.style.display = "none";
+    addDependContainer.style.display = "block";
 }
 
 
@@ -390,6 +490,8 @@ function criarJson(){
 
     return json;
 }
+
+
 
 function criarFuncionario(){
 
@@ -665,6 +767,8 @@ function editarFuncionarioInfo(){
 
     var id = value;
 
+    var inp = document.getElementById("editarFuncionario");
+
     var url = "http://localhost:8080/api/v1/put/" + id;
 
     var json = montarJsonEditar();
@@ -730,6 +834,8 @@ function editarFuncionarioInfo(){
                   break;
                 }
             }
+
+            inp.style.display = "none";
     
         })
         .catch(error => {
@@ -887,6 +993,8 @@ function desabilitarFuncionario(){
 
 }
 
+
+
 function criarDependente(){
     var cpfResponsavel = document.getElementById("cpfResponsavel");
     var nomeDependente = document.getElementById("nomeDependente");
@@ -941,10 +1049,14 @@ function criarDependente(){
             optionDesabilitarD.value = data['id'];
             optionDesabilitarD.textContent = '' + data['nomeDependente'] + " - CPF: " + data['cpf'];
     
+            var optionAddDepend = document.createElement("option");
+            optionAddDepend.value = data['id'];
+            optionAddDepend.textContent = '' + data['nomeDependente'] + " - CPF: " + data['cpf'];
             
             selectExibirD.appendChild(optionExibirD);
             selectEditarD.appendChild(optionEditarD);
             selectDesabilitarD.appendChild(optionDesabilitarD);
+            selectAddDepend.appendChild(optionAddDepend);
         })
         .catch(error => {
             console.error('Erro de requisição:', error);
@@ -1109,6 +1221,13 @@ function editarDependente(){
                     break;
                 }
             }
+            
+            for (var i = 0; i < selectAddDepend.options.length; i++) {
+                if (selectAddDepend.options[i].value == id) {
+                    selectAddDepend.options[i].textContent = "" + data["nomeDependente"] + " - CPF:" + data["cpf"];
+                    break;
+                }
+            }
 
             var inputsDE = document.getElementById("editarDependente");
             inputsDE.style.display = "none";
@@ -1223,6 +1342,13 @@ function desabilitarDependente(){
                 }
             }
 
+            for (var i = 0; i < selectAddDepend.options.length; i++) {
+                if (selectAddDepend.options[i].value == id) {
+                    selectAddDepend.options[i].remove();
+                  break;
+                }
+            }
+
             var optionAtivarD = document.createElement("option");
             optionAtivarD.value = id;
             optionAtivarD.textContent = name;
@@ -1240,6 +1366,7 @@ function desabilitarDependente(){
             alert("Não foi possivel exibir o funcionario, tente novamente!");
     });
 }
+
 
 function encontrarFuncionarioAtivar(){
     var response = document.getElementById("exibirAtivar");
@@ -1379,6 +1506,7 @@ function ativarFuncionario(){
     });
 }
 
+
 function encontrarDependenteAtivar(){
     var response = document.getElementById("exibirAtivarD");
 
@@ -1470,11 +1598,16 @@ function ativarDependente(){
             var optionDesabilitarD = document.createElement("option");
             optionDesabilitarD.value = id;
             optionDesabilitarD.textContent = name;
+
+            var optionAddDepend = document.createElement("option");
+            optionAddDepend.value = id;
+            optionAddDepend.textContent = name;
     
             
             selectExibirD.appendChild(optionExibirD);
             selectEditarD.appendChild(optionEditarD);
             selectDesabilitarD.appendChild(optionDesabilitarD);
+            selectAddDepend.appendChild(optionAddDepend);
 
             for (var i = 0; i < selectAtivarD.options.length; i++) {
                 if (selectAtivarD.options[i].value == id) {
@@ -1494,6 +1627,7 @@ function ativarDependente(){
             alert("Não foi possivel exibir o funcionario, tente novamente!");
     });
 }
+
 
 function addInfoFuncionario(){
     var salarioBruto = document.getElementById("salarioBrutoId");
@@ -1567,6 +1701,7 @@ function addInfoFuncionario(){
             }
         })
         .then(data => {
+            alert("Informações adicionadas ao Funcionario com sucesso!")
             console.log(data);
     
         })
@@ -1577,7 +1712,7 @@ function addInfoFuncionario(){
 }
 
 function calcularFolhaPagamento(){
-    var folha = document.getElementById("folha");
+    var folha = document.getElementById("exibirFid");
 
     if(selectFolhaFuncio){
         var value = selectFolhaFuncio.value;
@@ -1650,4 +1785,142 @@ function blockPericulosidade(){
     }else{
         radio1.disabled = false;
     }
+}
+
+function exibirTodosFuncio(){
+    var exibir = document.getElementById("exibirTodos");
+    exibir.innerHTML = "";
+
+    var url = "http://localhost:8080/api/v1";
+
+    fetch(url)
+    .then(response =>{
+        if (response.status == 200) {
+            return response.json();
+        }else{
+            throw new Error('Erro ao acessar a API: ' + response.status);
+        }
+    })
+    .then(data => {
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++) {
+            var objeto = data[i];
+            console.log(objeto);
+            var htmlString = `
+            <br>
+            <p>Nome: ${objeto.nome}</p>
+            <p>RG: ${objeto.rg}</p>
+            <p>CPF: ${objeto.cpf}</p>
+            <p>Cargo: ${objeto.typeCargo}</p>
+            <p>Função: ${objeto.funcao}</p>
+            <p>Período: ${objeto.typePeriodo}</p>
+            <p>Sexo: ${objeto.typeSexo}</p>
+            <p>Data de Aniversário: ${objeto.dataAniversario}</p>
+            <p>Endereço:</p>
+            <ul>
+                <li>Rua: ${objeto.endereco.rua}</li>
+                <li>Número: ${objeto.endereco.numero}</li>
+                <li>Bairro: ${objeto.endereco.bairro}</li>
+                <li>Cidade: ${objeto.endereco.cidade}</li>
+                <li>CEP: ${objeto.endereco.cep}</li>
+            </ul>
+            <p>Categoria de Segurados: ${objeto.typeCategoriaSegurados}</p>
+            <br>
+            `;
+
+            console.log(htmlString);
+
+            exibir.innerHTML += htmlString;
+        }
+
+    })
+    .catch(error => {
+        console.error('Erro de requisição:', error);
+        alert("Não foi possivel exibir o funcionario, tente novamente!");
+    });
+}
+
+function exibirTodosDepend(){
+    var exibir = document.getElementById("exibirTodosD");
+    exibir.innerHTML = "";
+
+    var url = "http://localhost:8080/api/v1/dependente";
+
+    fetch(url)
+    .then(response =>{
+        if (response.status == 200) {
+            return response.json();
+        }else{
+            throw new Error('Erro ao acessar a API: ' + response.status);
+        }
+    })
+    .then(data => {
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++) {
+            var objeto = data[i];
+            console.log(objeto);
+            var htmlString = `
+            <br>
+            <p>CPF Responsavel: ${objeto.cpfResponsavel}</p>
+            <p>Nome Dependente: ${objeto.nomeDependente}</p>
+            <p>CPF Dependente: ${objeto.cpf}</p>
+            <p>Grau de Parentesco: ${objeto.grauDeParentesco}</p>
+            <p>Data de Nascimento: ${objeto.dataNascimento}</p>
+            <br>
+            `;
+
+            console.log(htmlString);
+
+            exibir.innerHTML += htmlString;
+        }
+
+    })
+    .catch(error => {
+        console.error('Erro de requisição:', error);
+        alert("Não foi possivel exibir o funcionario, tente novamente!");
+    });
+}
+
+function addDependFuncio(){
+    if(selectAddDepend){
+        var id = selectAddDepend.value
+    }
+
+    var cpf = document.getElementById("cpfF");
+
+    var url = "http://localhost:8080/api/v1/dependente/add/" + id;
+
+    var json = {
+        "cpfResponsavel": cpf.value
+    }
+
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(json)
+        })
+        .then(response => {
+            if (response.status == 200) {
+                console.log(response);
+                return response.json();
+            }else{
+                throw new Error('Erro ao acessar a API: ' + response.status);
+            }
+        })
+        .then(data => {
+            alert("Dependente Adicionado com sucesso!");
+            console.log(data);
+
+            cpf.value = ""
+    
+        })
+        .catch(error => {
+            console.error('Erro de requisição:', error);
+            alert("Não foi possivel criar o funcionario, Revise os dados inseridos e tente novamente!");
+        });
+
 }
