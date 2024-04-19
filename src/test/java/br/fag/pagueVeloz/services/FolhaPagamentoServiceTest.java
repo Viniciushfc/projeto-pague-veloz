@@ -1,28 +1,21 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.dtos.FuncionarioDTO;
-import br.fag.pagueVeloz.entities.*;
-import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.FolhaPagamentoRepository;
-import br.fag.pagueVeloz.repositories.FuncionarioRepository;
-import br.fag.pagueVeloz.services.FolhaPagamentoService;
-import br.fag.pagueVeloz.services.BeneficioService;
-import br.fag.pagueVeloz.services.DescontosService;
-import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
+import br.fag.pagueVeloz.restapi.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.restapi.entities.*;
+import br.fag.pagueVeloz.restapi.infra.repositories.FolhaPagamentoRepository;
+import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.services.BeneficioService;
+import br.fag.pagueVeloz.restapi.services.DescontosService;
+import br.fag.pagueVeloz.restapi.services.FolhaPagamentoService;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 // Anotações para o JUnit 5
 
