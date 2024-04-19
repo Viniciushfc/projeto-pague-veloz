@@ -210,7 +210,16 @@ input[type="button"]:hover {
 #desabilitarFuncionarioId,
 #exibirDependenteId,
 #editarDependenteId,
-#editarDependente{
+#editarDependente,
+#desabilitarDependenteId,
+#buttonDesabilitarD,
+#buttonDesabilitarF,
+#ativarFuncionarioId,
+#buttonAtivarF,
+#ativarDependenteId,
+#buttonAtivarD,
+#folhaPagamento,
+#calcularFolhaC{
     display: none;
 }
 

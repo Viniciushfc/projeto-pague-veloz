@@ -1,6 +1,7 @@
 package br.fag.pagueVeloz.restapi.controllers;
 
 import br.fag.pagueVeloz.restapi.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.restapi.dtos.InformacaoMensalDTO;
 import br.fag.pagueVeloz.restapi.entities.Funcionario;
 import br.fag.pagueVeloz.restapi.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,11 @@ public class FuncionarioController {
     public ResponseEntity<Object> ativarFuncionario(@PathVariable Long id) throws Exception {
         this.funcionarioService.ativarFuncionario(id);
         return new ResponseEntity("Foi ativado com sucesso!", HttpStatus.OK);
+    }
+
+    @PutMapping("/info/{id}")
+    public ResponseEntity<Object> addInformacoesFuncionario(@PathVariable long id, @RequestBody InformacaoMensalDTO dto) throws Exception {
+        Funcionario funcionario = this.funcionarioService.addInfoFuncionario(id, dto);
+        return new ResponseEntity(funcionario, HttpStatus.OK);
     }
 }

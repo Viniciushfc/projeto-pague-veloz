@@ -1,7 +1,9 @@
 package br.fag.pagueVeloz.restapi.services;
 
 import br.fag.pagueVeloz.restapi.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.restapi.dtos.InformacaoMensalDTO;
 import br.fag.pagueVeloz.restapi.entities.Funcionario;
+import br.fag.pagueVeloz.restapi.entities.InformacaoMensal;
 import br.fag.pagueVeloz.restapi.infra.exceptions.NotFoundException;
 import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +89,20 @@ public class FuncionarioService {
             funcionario.setAtivo(true);
         }
 
+    }
+
+    public Funcionario addInfoFuncionario(long id, InformacaoMensalDTO dto) throws NotFoundException{
+        Optional<Funcionario> optionalFuncionario = Optional.ofNullable(this.funcionarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException()));
+
+        Funcionario funcionario = optionalFuncionario.get();
+
+        InformacaoMensal informacaoMensal = new InformacaoMensal(dto);
+
+        funcionario.setInformacaoMensal(informacaoMensal);
+
+        salvarFuncionario(funcionario);
+
+        return funcionario;
     }
 }

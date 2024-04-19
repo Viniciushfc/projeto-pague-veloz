@@ -1,5 +1,6 @@
 package br.fag.pagueVeloz.restapi.entities;
 
+import br.fag.pagueVeloz.restapi.dtos.InformacaoMensalDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,5 +35,17 @@ public class InformacaoMensal {
 
     public InformacaoMensal(Double salarioBruto) {
         this.salarioBruto = salarioBruto;
+    }
+
+    public InformacaoMensal(InformacaoMensalDTO dto){
+        this.salarioBruto = dto.salarioBruto();
+        this.horasExtras = dto.horasEtras();
+        this.adicionalNoturno = dto.adicionalNoturno();
+        this.faltasAtrasos = dto.faltasAtrasos();
+        this.adiantamento = dto.adiantamento();
+        this.sindical = dto.sindical();
+        this.viagem = dto.viagem();
+        this.grauInsalubridade = dto.grauInsalubridade();
+        this.periculosidade = dto.periculosidade();
     }
 }
