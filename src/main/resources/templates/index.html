@@ -20,6 +20,7 @@
                     <button onclick="exibirF()">Exibir Funcionário</button>
                     <button onclick="editarF()">Editar Funcionário</button>
                     <button onclick="desativarF()">Desativar Funcionário</button>
+                    <button onclick="ativarF()">Ativar Funcionário</button>
                 </div>
             </li>
             <li class="dropdown">
@@ -29,13 +30,12 @@
                     <button onclick="exibirD()">Exibir Dependente</button>
                     <button onclick="editarD()">Editar Dependente</button>
                     <button onclick="desativarD()">Desativar Dependente</button>
+                    <button onclick="ativarD()">Ativar Dependente</button>
                 </div>
             </li>
             
-            
-            
-            
-            <li><button>Exibir Folha</button></li>
+            <li><button onclick="calcularFolha()">Adicionar Informações</button></li>
+            <li><button onclick="calcFolha()">Calcular Folha</button></li>
         </ul>
     </nav>
 
@@ -238,6 +238,20 @@
         <input type="button" value="Desabilitar Funcionario" id="buttonDesabilitarF" onclick="desabilitarFuncionario()">
     </div>
 
+    <div class="container" id="ativarFuncionarioId">
+        <h2>Ativar Funcionário</h2>
+        <label for="iDesabilitarFuncionarioId">Funcionario:</label>
+        <select name="ativarFuncionario" id="iAtivarFuncionarioId">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionarioAtivar()">
+        <br>
+        <p id="exibirAtivar"></p>
+        <br>
+        <input type="button" value="Ativar Funcionario" id="buttonAtivarF" onclick="ativarFuncionario()">
+    </div>
+
     <div class="container" id="criarDependenteId">
         <h2>Criar Dependente</h2>
             <label for="cpfResponsavel">CPF do Responsável:</label><br>
@@ -273,7 +287,11 @@
     </div>
 
     <div class="container" id="editarDependenteId">
+
+        <h2>Editar Dependente</h2>
+
         <h2>Editar Funcionário</h2>
+
         <label for="iEditarDependenteId">Dependente:</label>
         <select name="editarDependenteId" id="iEditarDependenteId" onchange="buscarDependente()">
             <option value="none">---</option>
@@ -300,6 +318,113 @@
                 </div>
         </div>
         
+    </div>
+
+    <div class="container" id="desabilitarDependenteId">
+        <h2>Desabilitar Dependente</h2>
+        <label for="iDesabilitarDependenteId">Dependente:</label>
+        <select name="desabilitarDependente" id="iDesabilitarDependenteId">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarDependenteDesabilitar()">
+        <br>
+        <p id="exibirDesabilitarD"></p>
+        <br>
+        <input type="button" value="Desabilitar Dependente" id="buttonDesabilitarD" onclick="desabilitarDependente()">
+    </div>
+
+    <div class="container" id="ativarDependenteId">
+        <h2>Ativar Dependente</h2>
+        <label for="iAtivarDependenteId">Dependente:</label>
+        <select name="ativarDependente" id="iAtivarDependenteId">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarDependenteAtivar()">
+        <br>
+        <p id="exibirAtivarD"></p>
+        <br>
+        <input type="button" value="Ativar Dependente" id="buttonAtivarD" onclick="ativarDependente()">
+    </div>
+
+    <div class="container" id="folhaPagamento">
+        <h2>Adicionar Informações</h2>
+        <label for="funcionarioFolha">Funcionario:</label>
+        <select name="funcionarioFolha" id="funcionarioFolha">
+            <option value="">---</option>
+        </select>
+
+        <div class="container">
+            <label for="salarioBruto">Salario Bruto:</label>
+            <input type="number" name="salarioBruto" id="salarioBrutoId" step="0.01">
+
+            <label for="horasExtras">Horas Extras:</label>
+            <input type="number" name="horasExtras" id="horasExtrasId">
+
+            <label for="adicionalNoturno">Adicional Noturno:</label>
+            <input type="number" name="adicionalNoturno" id="adicionalNoturnoId" step="0.01">
+
+            <label for="faltasAtrasos">Faltas e Atrasos:</label>
+            <input type="number" name="faltasAtrasos" id="faltasAtrasosId">
+
+            <label for="adiantamento">Adiantamento:</label>
+            <input type="number" name="adiantamento" id="adiantamentoId" step="0.01">
+
+            <label>Sindical:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="sindicalSIm" name="sindical" value="true">
+                <label for="matutino">Sim</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="sindicalNao" name="sindical" value="false">
+                <label for="noturno">Não</label><br>
+            </div>
+
+            <label>Viagem:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="viagemSim" name="viagem" value="true">
+                <label for="matutino">Sim</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="viagemNao" name="viagem" value="false">
+                <label for="noturno">Não</label><br>
+            </div>
+
+            <label for="insalubridadeId">Insalubridade:</label><br>
+            <select id="selectInsalubridade" name="insalubridade" onchange="blockPericulosidade()">
+                <option value="GRAU0">sem Insalubridade</option>
+                <option value="GRAU1">Nivel 1</option>
+                <option value="GRAU2">Nivel 2</option>
+                <option value="GRAU3">Nivel 3</option>
+            </select><br>
+
+            <label>Periculosidade:</label><br>
+            <div class="radio-container">
+                <input type="radio" id="periculosidadeSim" name="periculosidade" value="true">
+                <label for="matutino">Sim</label>
+            </div>
+            <div class="radio-container">
+                <input type="radio" id="periculosidadeNao" name="periculosidade" value="false">
+                <label for="noturno">Nao</label><br>
+            </div>
+
+        </div>
+
+        <input type="button" value="Adicionar Informações" id="calcularFolha" onclick="addInfoFuncionario()">
+
+        
+    </div>
+
+    <div class="container" id="calcularFolhaC">
+        <label for="funcionarioFolhaCalc">Funcionario:</label>
+        <select name="funcionarioFolhaCalc" id="funcionarioFolhaCalc">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Calcular Folha" id="calcularFolha" onclick="calcularFolhaPagamento()">
+
+        <p id="folha"></p>
     </div>
 
     
