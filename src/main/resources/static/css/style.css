@@ -207,7 +207,10 @@ input[type="button"]:hover {
 #editarFuncionarioId,
 #exibirFuncionarioId,
 #editarFuncionario,
-#desabilitarFuncionarioId{
+#desabilitarFuncionarioId,
+#exibirDependenteId,
+#editarDependenteId,
+#editarDependente{
     display: none;
 }
 

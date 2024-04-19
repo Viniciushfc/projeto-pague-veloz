@@ -142,7 +142,6 @@
         </select>
 
         <div class="container" id="editarFuncionario">
-            <h2>Criar Funcionario</h2>
             <label for="nome">Nome:</label><br>
             <input type="text" id="nomeEditar" name="nome"><br>
     
@@ -232,16 +231,15 @@
             <option value="">---</option>
         </select>
 
-        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionario()">
-
-        <p id="exibir"></p>
-
-        <input type="button" value="Desabilitar Funcionario" id="buttonDesabilitarF" onclick="desabilitarFuncionario()" disabled>
+        <input type="button" value="Encontrar Funcionário" id="buttonExibirF" onclick="encontrarFuncionarioDesabilitar()">
+        <br>
+        <p id="exibirDesabilitar"></p>
+        <br>
+        <input type="button" value="Desabilitar Funcionario" id="buttonDesabilitarF" onclick="desabilitarFuncionario()">
     </div>
 
     <div class="container" id="criarDependenteId">
         <h2>Criar Dependente</h2>
-        <form action="#">
             <label for="cpfResponsavel">CPF do Responsável:</label><br>
             <input type="text" id="cpfResponsavel" name="cpfResponsavel"><br>
 
@@ -260,7 +258,48 @@
             <div id="criarD">
                 <input type="button" value="Criar" id="buttonCriarD" onclick="criarDependente()">
             </div>
-        </form>
+    </div>
+
+    <div class="container" id="exibirDependenteId">
+        <h2>Exibir Dependente</h2>
+        <label for="iExibirDependente">Dependente:</label>
+        <select name="exibirDependente" id="iExibirDependente">
+            <option value="">---</option>
+        </select>
+
+        <input type="button" value="Encontrar Dependente" id="buttonExibirF" onclick="encontrarDependente()">
+
+        <p id="exibirD"></p>
+    </div>
+
+    <div class="container" id="editarDependenteId">
+        <h2>Editar Funcionário</h2>
+        <label for="iEditarDependenteId">Dependente:</label>
+        <select name="editarDependenteId" id="iEditarDependenteId" onchange="buscarDependente()">
+            <option value="none">---</option>
+        </select>
+
+        <div class="container" id="editarDependente">
+                <label for="cpfResponsavelE">CPF do Responsável:</label><br>
+                <input type="text" id="cpfResponsavelE" name="cpfResponsavel"><br>
+    
+                <label for="nomeDependenteE">Nome do Dependente:</label><br>
+                <input type="text" id="nomeDependenteE" name="nomeDependente"><br>
+    
+                <label for="cpfDependenteE">CPF do Dependente:</label><br>
+                <input type="text" id="cpfDependenteE" name="cpf"><br>
+    
+                <label for="grauDeParentescoE">Grau de Parentesco:</label><br>
+                <input type="text" id="grauDeParentescoE" name="grauDeParentesco"><br>
+    
+                <label for="dataAniversarioDE" id="dataD">Data de Aniversário:</label><br>
+                <input type="date" id="dataAniversarioDE" name="dataAniversario"><br>
+    
+                <div id="criarD">
+                    <input type="button" value="Editar" id="buttonCriarD" onclick="editarDependente()">
+                </div>
+        </div>
+        
     </div>
 
     
