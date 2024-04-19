@@ -14,7 +14,6 @@ var folhaPagamento = document.getElementById("folhaPagamento");
 var calcularFolhaC = document.getElementById("calcularFolhaC")
 
 
-
 var selectIds = document.getElementById("iExibirFuncionario");
 var selectIdsEditar = document.getElementById("iEditarFuncionarioId");
 var selectIdsDesabilitar = document.getElementById("iDesabilitarFuncionarioId");
@@ -26,6 +25,11 @@ var selectExibirD = document.getElementById("iExibirDependente");
 var selectEditarD = document.getElementById("iEditarDependenteId");
 var selectDesabilitarD = document.getElementById("iDesabilitarDependenteId");
 var selectAtivarD = document.getElementById("iAtivarDependenteId");
+
+
+var selectExibirD = document.getElementById("iExibirDependente");
+var selectEditarD = document.getElementById("iEditarDependenteId");
+var selectDesabilitarD = document.getElementById("");
 
 
 function createF(){
@@ -831,7 +835,9 @@ function desabilitarFuncionario(){
         })
         .then(data => {
             alert("Funcionario Desabilitado com sucesso!");
+
             console.log(data);
+
             
             for (var i = 0; i < selectIds.options.length; i++) {
                 if (selectIds.options[i].value == id) {
@@ -853,6 +859,7 @@ function desabilitarFuncionario(){
                   break;
                 }
             }
+
 
             for (var i = 0; i < selectFolhaFuncio.options.length; i++) {
                 if (selectFolhaFuncio.options[i].value == id) {
@@ -992,6 +999,136 @@ function encontrarDependente(){
         })
         .catch(error => {
             console.error('Erro de requisição:', error);
+            alert("Não foi possivel exibir o funcionario, tente novamente!");
+        });
+}
+
+function buscarDependente(){
+    var valueSelect = selectEditarD.value;
+    var inputs = document.getElementById("editarDependente");
+    if(valueSelect == "none"){
+        inputs.style.display = "none"
+    }else{
+        inputs.style.display = "block"
+    }
+
+    
+
+    if(selectEditarD){
+        var value = selectEditarD.value;
+    }
+
+    var id = value;
+    var url = "http://localhost:8080/api/v1/dependente/" + id;
+
+    fetch(url)
+        .then(response => {
+            if (response.status == 200) {
+                return response.json();
+            }else{
+                throw new Error('Erro ao acessar a API: ' + response.status);
+            }
+        })
+        .then(data => {
+
+            var cpfResponsavel = document.getElementById("cpfResponsavelE");
+            cpfResponsavel.value = data.cpfResponsavel;
+
+            var nomeDependente = document.getElementById("nomeDependenteE");
+            nomeDependente.value = data.nomeDependente;
+
+            var cpfDependente = document.getElementById("cpfDependenteE");
+            cpfDependente.value = data.cpf;
+
+            var grauParentesco = document.getElementById("grauDeParentescoE");
+            grauParentesco.value = data.grauDeParentesco;
+
+            var dataAniversario = document.getElementById("dataAniversarioDE");
+            dataAniversario.value = data.dataNascimento;
+    
+        })
+        .catch(error => {
+            console.error('Erro de requisição:', error);
+            alert("Não foi possivel exibir o funcionario, tente novamente!");
+        });
+
+}
+
+function editarDependente(){
+    var cpfResponsavel = document.getElementById("cpfResponsavelE");
+    var nomeDependente = document.getElementById("nomeDependenteE");
+    var cpfDependente = document.getElementById("cpfDependenteE");
+    var grauParentesco = document.getElementById("grauDeParentescoE");
+    var dataNascimento = document.getElementById("dataAniversarioDE");
+
+    var json = {
+        "cpfResponsavel": cpfResponsavel.value,
+        "nomeDependente": nomeDependente.value,
+        "cpf": cpfDependente.value,
+        "grauDeParentesco": grauParentesco.value,
+        "dataNascimento": dataNascimento.value
+    }
+
+    if(selectEditarD){
+        var value = selectEditarD.value;
+    }
+
+    var id = value;
+
+    var url = "http://localhost:8080/api/v1/dependente/put/" + id;
+
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(json)
+        })
+        .then(response => {
+            if (response.status == 200) {
+                console.log(response);
+                return response.json();
+            }else{
+                throw new Error('Erro ao acessar a API: ' + response.status);
+            }
+        })
+        .then(data => {
+            alert("Dependente Editado com sucesso!");
+            console.log(data);
+
+            for (var i = 0; i < selectEditarD.options.length; i++) {
+                if (selectDesabilitarD.options[i].value == "none") {
+                    selectDesabilitarD.options[i].selected = true;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < selectExibirD.options.length; i++) {
+                if (selectExibirD.options[i].value == id) {
+                    selectExibirD.options[i].textContent = "" + data["nomeDependente"] + " - CPF:" + data["cpf"];
+                    break;
+                }
+            }
+
+            for (var i = 0; i < selectEditarD.options.length; i++) {
+                if (selectEditarD.options[i].value == id) {
+                    selectEditarD.options[i].textContent = "" + data["nomeDependente"] + " - CPF:" + data["cpf"];
+                    break;
+                }
+            }
+
+            for (var i = 0; i < selectDesabilitarD.options.length; i++) {
+                if (selectDesabilitarD.options[i].value == id) {
+                    selectDesabilitarD.options[i].textContent = "" + data["nomeDependente"] + " - CPF:" + data["cpf"];
+                    break;
+                }
+            }
+
+    
+        })
+        .catch(error => {
+            console.error('Erro de requisição:', error);
+
             alert("Não foi possivel exibir o funcionario, tente novamente!");
         });
 }
@@ -1650,4 +1787,6 @@ function blockPericulosidade(){
     }else{
         radio1.disabled = false;
     }
+            alert("Não foi possivel criar o funcionario, Revise os dados inseridos e tente novamente!");
+        });
 }
