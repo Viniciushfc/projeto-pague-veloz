@@ -1,9 +1,9 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.dtos.FuncionarioDTO;
-import br.fag.pagueVeloz.entities.*;
-import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.restapi.entities.*;
+import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.services.FuncionarioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -87,5 +86,13 @@ public class FuncionarioServiceTest {
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
         funcionarioService.desativarFuncionario(1L);
         assertFalse(funcionario.getAtivo());
+    }
+
+    @Test
+    public void testAtivarFuncionario() throws Exception {
+        Funcionario funcionario = new Funcionario();
+        when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
+        funcionarioService.ativarFuncionario(1L);
+        assertTrue(funcionario.getAtivo());
     }
 }

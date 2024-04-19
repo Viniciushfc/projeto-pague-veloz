@@ -1,10 +1,11 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.dtos.FuncionarioDTO;
-import br.fag.pagueVeloz.entities.*;
-import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.DependenteRepository;
-import br.fag.pagueVeloz.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.dtos.FuncionarioDTO;
+import br.fag.pagueVeloz.restapi.entities.*;
+import br.fag.pagueVeloz.restapi.infra.exceptions.NotFoundException;
+import br.fag.pagueVeloz.restapi.infra.repositories.DependenteRepository;
+import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.services.DescontosService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

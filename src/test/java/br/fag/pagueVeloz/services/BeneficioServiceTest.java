@@ -1,12 +1,13 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.entities.Funcionario;
-import br.fag.pagueVeloz.entities.Dependente;
-import br.fag.pagueVeloz.entities.InformacaoMensal;
-import br.fag.pagueVeloz.entities.TypeInsalubridade;
-import br.fag.pagueVeloz.entities.TypePeriodo;
-import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.entities.Funcionario;
+import br.fag.pagueVeloz.restapi.entities.Dependente;
+import br.fag.pagueVeloz.restapi.entities.InformacaoMensal;
+import br.fag.pagueVeloz.restapi.entities.TypeInsalubridade;
+import br.fag.pagueVeloz.restapi.entities.TypePeriodo;
+import br.fag.pagueVeloz.restapi.infra.exceptions.NotFoundException;
+import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.services.BeneficioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,10 +16,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class BeneficioServiceTest {
 
