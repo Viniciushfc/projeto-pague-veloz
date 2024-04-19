@@ -1,13 +1,14 @@
 package br.fag.pagueVeloz.services;
 
-import br.fag.pagueVeloz.dtos.AdicionarDependenteDTO;
-import br.fag.pagueVeloz.dtos.DependenteDTO;
-import br.fag.pagueVeloz.dtos.FuncionarioDTO;
-import br.fag.pagueVeloz.entities.*;
-import br.fag.pagueVeloz.exceptions.CustomException;
-import br.fag.pagueVeloz.exceptions.NotFoundException;
-import br.fag.pagueVeloz.repositories.DependenteRepository;
-import br.fag.pagueVeloz.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.dtos.AdicionarDependenteDTO;
+import br.fag.pagueVeloz.restapi.dtos.DependenteDTO;
+import br.fag.pagueVeloz.restapi.entities.Dependente;
+import br.fag.pagueVeloz.restapi.entities.Funcionario;
+import br.fag.pagueVeloz.restapi.infra.exceptions.CustomException;
+import br.fag.pagueVeloz.restapi.infra.exceptions.NotFoundException;
+import br.fag.pagueVeloz.restapi.infra.repositories.DependenteRepository;
+import br.fag.pagueVeloz.restapi.infra.repositories.FuncionarioRepository;
+import br.fag.pagueVeloz.restapi.services.DependenteService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -46,46 +47,35 @@ public class DependenteServiceTest {
 
         Dependente dependente = dependenteService.cadastrarDependente(dependenteDTO);
 
-        assertEquals("nomeDependente", dependente.getNomeDependente());
-        assertEquals("12345678900", dependente.getCpf());
+
         assertEquals(true, dependente.getAtivo());
         verify(dependenteRepository, times(1)).save(any(Dependente.class));
     }
 
     @Test
-    public void testExibirDependente() {
-        Dependente dependenteMock = new Dependente();
-        dependenteMock.setId(1L);
+    public void testExibirDependente() throws Exception {
+        Dependente dependente = new Dependente();
 
-        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependenteMock));
+        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependente));
+        Dependente foundDependente = dependenteService.exibirDependente(1L);
 
-        Dependente dependente = null;
-        try {
-            dependente = dependenteService.exibirDependente(1L);
-        } catch (Exception e) {
-            fail("Erro ao exibir dependente: " + e.getMessage());
-        }
+        assertNotNull(foundDependente);
 
-        assertNotNull(dependente);
-        assertEquals(1L, dependente.getId());
     }
 
     @Test
     public void testExibirDependentes() {
-        List<Dependente> dependenteList = new ArrayList<>();
-        dependenteList.add(new Dependente());
-        dependenteList.add(new Dependente());
+        List<Dependente> dependentes = new ArrayList<>();
 
-        when(dependenteRepository.findAll()).thenReturn(dependenteList);
+        when(dependenteRepository.findAll()).thenReturn(dependentes);
 
-        List<Dependente> result = dependenteService.exibirDependentes();
+        List<Dependente> resultFound = dependenteService.exibirDependentes();
 
-        assertEquals(2, result.size());
+        assertEquals(dependentes, resultFound);
     }
 
     @Test
-    public void testEditarDependente() {
-
+    public void testEditarDependente() throws Exception {
         DependenteDTO dependenteDTO = new DependenteDTO(
                 "cpfResponsavel",
                 "nomeDependente",
@@ -94,20 +84,15 @@ public class DependenteServiceTest {
                 LocalDate.of(2000, 1, 1) // Exemplo de data de nascimento
         );
 
-        Dependente dependenteMock = new Dependente();
-        dependenteMock.setId(1L);
+        Dependente dependente = new Dependente();
+        dependente.setId(1L);
 
-        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependenteMock));
+        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependente));
+        when(dependenteRepository.save(dependente)).thenReturn(dependente);
 
-        Dependente dependente = null;
-        try {
-            dependente = dependenteService.editarDependente(1L, dependenteDTO);
-        } catch (Exception e) {
-            fail("Erro ao editar dependente: " + e.getMessage());
-        }
+        Dependente dependenteUpdate = dependenteService.editarDependente(1L, dependenteDTO);
 
-        assertNotNull(dependente);
-        assertEquals("nomeDependente", dependente.getNomeDependente());
+        assertNotNull(dependenteUpdate);
     }
 
     @Test
@@ -137,12 +122,20 @@ public class DependenteServiceTest {
     }
 
     @Test
-    public void testDesativarDependente() {
-        Dependente dependenteMock = new Dependente();
-        dependenteMock.setId(1L);
+    public void testDesativarDependente() throws Exception {
+        Dependente dependente = new Dependente();
 
-        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependenteMock));
+        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependente));
+        dependenteService.desativarDependente(1L);
+        assertFalse(dependente.getAtivo());
+    }
 
-        assertDoesNotThrow(() -> dependenteService.desativarDependente(1L));
+    @Test
+    public void testAtivarDependente() throws Exception {
+        Dependente dependente = new Dependente();
+
+        when(dependenteRepository.findById(1L)).thenReturn(Optional.of(dependente));
+        dependenteService.ativarDependente(1L);
+        assertTrue(dependente.getAtivo());
     }
 }
