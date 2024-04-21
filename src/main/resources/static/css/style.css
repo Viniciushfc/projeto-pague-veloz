@@ -221,7 +221,8 @@ input[type="button"]:hover {
 #folhaPagamento,
 #calcularFolhaC,
 #exibirTodosFuncionarioId,
-#exibirTodosDependenteId{
+#exibirTodosDependenteId,
+#addDependenteFuncionario{
     display: none;
 }
 
