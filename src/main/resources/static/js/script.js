@@ -1,5 +1,6 @@
 var createFuncio = document.getElementById("criarFuncionarioId");
 var exibirFuncio = document.getElementById("exibirFuncionarioId");
+var exibirFuncioTodos = document.getElementById("exibirTodosFuncionarioId");
 var editarFuncio = document.getElementById("editarFuncionarioId");
 var desabilitarFuncio = document.getElementById("desabilitarFuncionarioId");
 var ativarFuncio = document.getElementById("ativarFuncionarioId");
@@ -11,7 +12,8 @@ var desabiDepend = document.getElementById("desabilitarDependenteId");
 var ativarDepend = document.getElementById("ativarDependenteId");
 
 var folhaPagamento = document.getElementById("folhaPagamento");
-var calcularFolhaC = document.getElementById("calcularFolhaC")
+var calcularFolhaC = document.getElementById("calcularFolhaC");
+var addDependenteFuncio = document.getElementById("addDependenteFuncionario");
 
 
 
@@ -41,6 +43,7 @@ function createF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function exibirF(){
@@ -56,6 +59,27 @@ function exibirF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
+}
+
+function exibirTodosF(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "block";
+    editarFuncio.style.display = "none";
+    desabilitarFuncio.style.display = "none";
+    exibirDepend.style.display = "none";
+    editarDepend.style.display = "none";
+    desabiDepend.style.display = "none";
+    ativarFuncio.style.display = "none";
+    ativarDepend.style.display = "none";
+    folhaPagamento.style.display = "none";
+    calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
+    exibirFuncioTodos.style.display = "block";
+
+    exibirTodosFuncionarioTest()
+
 }
 
 function editarF(){
@@ -71,6 +95,7 @@ function editarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function desativarF(){
@@ -86,6 +111,7 @@ function desativarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function ativarF(){
@@ -101,6 +127,7 @@ function ativarF(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function createD(){
@@ -116,6 +143,7 @@ function createD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function exibirD(){
@@ -131,6 +159,7 @@ function exibirD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function editarD(){
@@ -146,6 +175,7 @@ function editarD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function desativarD(){
@@ -161,6 +191,7 @@ function desativarD(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function ativarD(){
@@ -176,6 +207,7 @@ function ativarD(){
     ativarDepend.style.display = "block";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function calcularFolha(){
@@ -191,6 +223,7 @@ function calcularFolha(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "block";
     calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "none";
 }
 
 function calcFolha(){
@@ -206,8 +239,24 @@ function calcFolha(){
     ativarDepend.style.display = "none";
     folhaPagamento.style.display = "none";
     calcularFolhaC.style.display = "block";
+    addDependenteFuncio.style.display = "none";
 }
 
+function addDependente(){
+    createFuncio.style.display = "none";
+    createDepend.style.display = "none";
+    exibirFuncio.style.display = "none";
+    editarFuncio.style.display = "none";
+    desabilitarFuncio.style.display = "none";
+    exibirDepend.style.display = "none";
+    editarDepend.style.display = "none";
+    desabiDepend.style.display = "none";
+    ativarFuncio.style.display = "none";
+    ativarDepend.style.display = "none";
+    folhaPagamento.style.display = "none";
+    calcularFolhaC.style.display = "none";
+    addDependenteFuncio.style.display = "block";
+}
 
 
 
@@ -1650,4 +1699,58 @@ function blockPericulosidade(){
     }else{
         radio1.disabled = false;
     }
+}
+
+function exibirTodosFuncionarioTest(){
+    var url = "http://localhost:8080/api/v1";
+
+    var html = document.getElementById("exibirTodos");
+    html.innerHTML = "";
+
+    fetch(url)
+    .then(response => {
+        if (response.status == 200) {
+            return response.json();
+        }else{
+            throw new Error('Erro ao acessar a API: ' + response.status);
+        } 
+    })
+    .then(data => {
+
+        for (var i = 0; i < data.length; i++) {
+            var objeto = data[i];
+            var htmlString = `
+            <br>
+            <br>
+            <p>Nome: ${objeto.nome}</p>
+            <p>RG: ${objeto.rg}</p>
+            <p>CPF: ${objeto.cpf}</p>
+            <p>Cargo: ${objeto.typeCargo}</p>
+            <p>Função: ${objeto.funcao}</p>
+            <p>Período: ${objeto.typePeriodo}</p>
+            <p>Sexo: ${objeto.typeSexo}</p>
+            <p>Data de Aniversário: ${objeto.dataAniversario}</p>
+            <p>Endereço:</p>
+            <ul>
+                <li>Rua: ${objeto.endereco.rua}</li>
+                <li>Número: ${objeto.endereco.numero}</li>
+                <li>Bairro: ${objeto.endereco.bairro}</li>
+                <li>Cidade: ${objeto.endereco.cidade}</li>
+                <li>CEP: ${objeto.endereco.cep}</li>
+            </ul>
+            <p>Categoria de Segurados: ${objeto.typeCategoriaSegurados}</p>
+            <br>
+            <br>
+            `;
+
+            html.innerHTML += htmlString
+        }
+
+        
+
+        
+
+
+    })
+    .catch()
 }
